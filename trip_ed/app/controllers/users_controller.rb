@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     # @users = User.all
-    @locations = Location.all
+    @search = Search.new(Location, params[:search])
+    @locations = @search.run
   end
 
   # GET /users/1
