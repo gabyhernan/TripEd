@@ -19,7 +19,7 @@
 
   <%= f.submit %>
 <% end %>
-
+<!--this function displays each loation that matches the search path-->
   <ul>
   <% @locations.each do |location| %>
     <li><%= link_to "#{location.name}", location_path(@location)%></li>
@@ -30,7 +30,7 @@
         <li><%=location.subject%></li>
         <li><%=location.description%></li>
       </ul>
-  <% end %>     
+  <% end %>
   </ul>
 
 <%= link_to 'New User', new_user_path %> -->

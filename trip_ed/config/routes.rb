@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  match '/locations/index', :controller => 'locations', :action => "index"
+
   resources :trips
   resources :locations
   resources :users
