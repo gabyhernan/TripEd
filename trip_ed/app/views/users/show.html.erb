@@ -1,29 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+<h1><%=@location.name%></h1>
+<ul>
+  <li><%=@location.address%></li>
+  <li><%=@location.accessibility%></li>
+  <li><%=@location.subject%></li>
+  <li><%=@location.description%></li>
+</ul>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Password hash:</strong>
-  <%= @user.password_hash %>
-</p>
-
-<p>
-  <strong>School:</strong>
-  <%= @user.school %>
-</p>
-
-<p>
-  <strong>School address:</strong>
-  <%= @user.school_address %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
