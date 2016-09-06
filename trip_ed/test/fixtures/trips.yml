@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  location: one
+  date: MyString
+  start_time: MyString
+  reserved: false
+
+two:
+  user: two
+  location: two
+  date: MyString
+  start_time: MyString
+  reserved: false
