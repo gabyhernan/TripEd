@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  match '/locations/index', :controller => 'locations', :action => "index"
+  match 'locations', to: "locations#index", via: [:get, :post]
 
   resources :trips
   resources :locations

@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <!--creates a form that searches locations-->
-<% form_for @search, url => "/locations" do |f| %>
+<% form_for @search, :url => "/locations" do |f| %>
   <%=f.label :name %>
   <%= f.text_field :name %>
 
