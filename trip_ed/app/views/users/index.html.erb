@@ -1,4 +1,11 @@
 <p id="notice"><%= notice %></p>
+<h3> This is where a search bar will someday go...</h3> 
+
+<ul>
+<% @locations.each do |location| %>
+  <li style="list-style:none;"> <a href="/locations/<%=location.id%>"><%=location.name%></a></li>
+<% end %>
+</ul>
 
 
 <%= link_to 'New User', new_user_path %>
