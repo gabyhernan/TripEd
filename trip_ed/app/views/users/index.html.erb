@@ -2,31 +2,16 @@
 
 <!--creates a form that searches locations-->
 <div style="border:1px solid black">
-<%= form_for @search, :url => "/users" do |f| %>
-  <%=f.label :name %>
-  <%= f.text_field :name_cont %>
-
-  <%=f.label :address%>
-  <%= f.text_field :address_cont %>
-
-  <%=f.label :description %>
-  <%= f.text_field :description_cont %>
-
-  <%=f.label :subject %>
-  <%= f.text_field :subject_cont %>
-
-  <%=f.label :accessibility %>
-  <%= f.text_field :accessibility_cont %><br>
-
-  <%= f.submit %>
-<% end %>
+  <%= form_tag(users_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Field Trips" %>
+    <%= submit_tag("Search")%>
+  <% end %>
 </div>
 
-<!--this function displays each loation that matches the search path-->
-  <ul>
-  <% @locations.each do |location| %>
-    <li style="list-style:none;"> <a href="/locations/<%=location.id%>"><%=location.name%></a></li>
-  <% end %>
-  </ul>
+<% if @locations.present? %>
+  <!-- <%= render 'locations' %> -->
+<!-- <% else %> -->
+  <h3>Sorry! There are no field trips matching the term(s) <%= params[:search] %>.</h3>
+<% end %>
 
 <%= link_to 'New User', new_user_path %>

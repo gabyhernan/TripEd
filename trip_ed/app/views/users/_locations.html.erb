@@ -1,0 +1,7 @@
+
+<!--this function displays each loation that matches the search path-->
+  <ul>
+  <% @locations.each do |location| %>
+    <li style="list-style:none;"> <a href="/locations/<%=location.id%>"><%=location.name%></a></li>
+  <% end %>
+  </ul>
