@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @location = Location.find_by(params[:id])
+    @location = Location.find_by(id: params[:id])
   end
 
   # GET /users/new
