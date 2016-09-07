@@ -1,0 +1,18 @@
+<h1> User Reservation Page</h1>
+<% @locations.each do |location| %>
+  <%= location.name %><br>
+  <%= location.address %><br>
+  <%= location.description %><br>
+  <%= location.subject %><br>
+  <%= location.accessibility %><br>
+<% end %>
+<br><br>
+<% @trips.each do |trip| %>
+  <%= trip.user_id %><br>
+  <%= trip.location_id %><br>
+  <%= trip.date %><br>
+  <%= trip.start_time %><br>
+  <%= trip.reserved %><br>
+  <%= trip.created_at %><br>
+  <%= trip.updated_at %><br>
+<% end %>
