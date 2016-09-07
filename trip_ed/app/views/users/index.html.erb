@@ -1,17 +1,4 @@
 <p id="notice"><%= notice %></p>
 
-<!--creates a form that searches locations-->
-<div style="border:1px solid black">
-  <%= form_tag(users_path, :method => "get", id: "search-form") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search Field Trips" %>
-    <%= submit_tag("Search")%>
-  <% end %>
-</div>
-
-<% if @locations.present? %>
-  <!-- <%= render 'locations' %> -->
-<!-- <% else %> -->
-  <h3>Sorry! There are no field trips matching the term(s) <%= params[:search] %>.</h3>
-<% end %>
 
 <%= link_to 'New User', new_user_path %>
