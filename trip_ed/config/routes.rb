@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
   match 'locations', to: "locations#index", via: [:get, :post]
 
+=======
+  root to: 'users#new'
+>>>>>>> master
   resources :trips
   resources :locations
   resources :users
