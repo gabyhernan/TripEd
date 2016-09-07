@@ -1,12 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-  # GET /users
-  # GET /users.json
   def index
-    # @users = User.all
-    @search = Search.new(Location, params[:search])
-    @locations = @search.run
+    @locations = Location.all
   end
 
   # GET /users/1

@@ -1,36 +1,11 @@
 <p id="notice"><%= notice %></p>
+<h3> This is where a search bar will someday go...</h3> 
 
-<!--creates a form that searches locations-->
-<% form_for @search, :url => "/locations" do |f| %>
-  <%=f.label :name %>
-  <%= f.text_field :name %>
-
-  <%=f.label :address %>
-  <%= f.text_field :address %>
-
-  <%=f.label :description %>
-  <%= f.text_field :description %>
-
-  <%=f.label :subject %>
-  <%= f.select :subject, ['Art', 'Music', 'Math & Science', 'History', 'Technology'] %>
-
-  <%=f.label :accessibility %>
-  <%= f.text_field :accessibility %>
-
-  <%= f.submit %>
+<ul>
+<% @locations.each do |location| %>
+  <li style="list-style:none;"> <a href="/locations/<%=location.id%>"><%=location.name%></a></li>
 <% end %>
-<!--this function displays each loation that matches the search path-->
-  <ul>
-  <% @locations.each do |location| %>
-    <li> <a href="/locations/<%=location.id%>"><%=location.name%></a></li>
-      <ul>
-        <li><%=location.name%></li>
-        <li><%=location.address%></li>
-        <li><%=location.accessibility%></li>
-        <li><%=location.subject%></li>
-        <li><%=location.description%></li>
-      </ul>
-  <% end %>
-  </ul>
+</ul>
 
-<%= link_to 'New User', new_user_path %> -->
+
+<%= link_to 'New User', new_user_path %>
