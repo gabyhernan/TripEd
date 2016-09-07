@@ -1,17 +1,18 @@
 class SessionsController < ApplicationController
 
   def create
-    user = User.find_by(params[:email])
-    location = Location.find_by(params[:email])
+    user = User.find_by(email: params[:email])
+    location = Location.find_by(email: params[:email])
 
     if user
-      sessions[:user_id] = user.id
+      session[:user_id] = user.id
       session[:type] = 'user'
-      redirect_to '/'
+      redirect_to '/users'
     elsif location
-      sessions[:user_id] = location.id
+      session[:user_id] = location.id
       session[:type] = 'location'
-      redirect_to '/'
+      # redirect_to '/location'
+      redirect_to locations_path
     else
       redirect_to '/users/new'
     end

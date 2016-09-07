@@ -1,0 +1,12 @@
+<h1>User Sign In</h1>
+
+<%= form_tag '/users/signin', method: 'post' do %>
+  <div>
+  <%= label_tag :email, 'email' %>
+  <%= text_field_tag :email, params[:email] %>
+  <%= label_tag :password, 'password' %>
+  <%= password_field_tag :password, params[:password_hash] %>
+  <%= submit_tag "Login"%>
+<%end%>
+
+<p class="member">Not a member? <a href="/users/new">Sign Up!</a></p>
