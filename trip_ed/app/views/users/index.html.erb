@@ -22,7 +22,7 @@
 <!--this function displays each loation that matches the search path-->
   <ul>
   <% @locations.each do |location| %>
-    <li><%= link_to "#{location.name}", location_path(@location)%></li>
+    <li> <a href="/locations/<%=location.id%>"><%=location.name%></a></li>
       <ul>
         <li><%=location.name%></li>
         <li><%=location.address%></li>
