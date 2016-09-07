@@ -4,7 +4,14 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
-    @locations = Location.all
+    # @locations = Location.all
+    if session[:type] == 'location'
+      @location = Location.find_by(session[:user_id])
+    elsif session[:type] == 'user'
+      redirect_to '/users'
+    else
+      redirect_to '/users/signin'
+    end
   end
 
   # GET /locations/1
