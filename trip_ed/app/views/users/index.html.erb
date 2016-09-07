@@ -2,37 +2,31 @@
 
 <!--creates a form that searches locations-->
 <div style="border:1px solid black">
-<%= search_form_for @search do |f| %>
-  <%=f.label :name_cont %>
-  <%= f.search_field :name_cont %>
+<%= form_for @search, :url => "/users" do |f| %>
+  <%=f.label :name %>
+  <%= f.text_field :name_cont %>
 
-  <%=f.label :address_cont %>
-  <%= f.search_field :address_cont %>
+  <%=f.label :address%>
+  <%= f.text_field :address_cont %>
 
-  <%=f.label :description_cont %>
-  <%= f.search_field :description_cont %>
+  <%=f.label :description %>
+  <%= f.text_field :description_cont %>
 
-  <%=f.label :subject_cont %>
-  <%= f.search_field :subject_cont %>
+  <%=f.label :subject %>
+  <%= f.text_field :subject_cont %>
 
-  <%=f.label :accessibility_cont %>
-  <%= f.search_field :accessibility_cont %>
+  <%=f.label :accessibility %>
+  <%= f.text_field :accessibility_cont %><br>
 
   <%= f.submit %>
 <% end %>
 </div>
+
 <!--this function displays each loation that matches the search path-->
   <ul>
   <% @locations.each do |location| %>
-    <li> <a href="/locations/<%=location.id%>"><%=location.name%></a></li>
-      <ul>
-        <li><%=location.name%></li>
-        <li><%=location.address%></li>
-        <li><%=location.accessibility%></li>
-        <li><%=location.subject%></li>
-        <li><%=location.description%></li>
-      </ul>
+    <li style="list-style:none;"> <a href="/locations/<%=location.id%>"><%=location.name%></a></li>
   <% end %>
   </ul>
 
-<%= link_to 'New User', new_user_path %> -->
+<%= link_to 'New User', new_user_path %>

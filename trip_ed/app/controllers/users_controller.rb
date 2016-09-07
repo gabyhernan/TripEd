@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @search = ransack_params
-    @locations = ransack_result
+    @search = Search.new(Location, params[:search])
+    @locations = @search.run
   end
 
   # GET /users/1
@@ -62,14 +62,6 @@ class UsersController < ApplicationController
   end
 
   private
-    def ransack_params
-      Location.ransack(params[:q])
-    end
-
-    def ransack_result
-      @search.result(distinct: true)
-    end
-    
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
