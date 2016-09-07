@@ -4,12 +4,15 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    # @users = User.all
+    @search = Search.new(Location, params[:search])
+    @locations = @search.run
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    @location = Location.find_by(params[:id])
   end
 
   # GET /users/new

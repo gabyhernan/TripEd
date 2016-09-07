@@ -1,35 +1,36 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Users</h1>
+<!--creates a form that searches locations-->
+<% form_for @search, :url => "/locations" do |f| %>
+  <%=f.label :name %>
+  <%= f.text_field :name %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Password hash</th>
-      <th>School</th>
-      <th>School address</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <%=f.label :address %>
+  <%= f.text_field :address %>
 
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.password_hash %></td>
-        <td><%= user.school %></td>
-        <td><%= user.school_address %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <%=f.label :description %>
+  <%= f.text_field :description %>
 
-<br>
+  <%=f.label :subject %>
+  <%= f.select :subject, ['Art', 'Music', 'Math & Science', 'History', 'Technology'] %>
 
-<%= link_to 'New User', new_user_path %>
+  <%=f.label :accessibility %>
+  <%= f.text_field :accessibility %>
+
+  <%= f.submit %>
+<% end %>
+<!--this function displays each loation that matches the search path-->
+  <ul>
+  <% @locations.each do |location| %>
+    <li> <a href="/locations/<%=location.id%>"><%=location.name%></a></li>
+      <ul>
+        <li><%=location.name%></li>
+        <li><%=location.address%></li>
+        <li><%=location.accessibility%></li>
+        <li><%=location.subject%></li>
+        <li><%=location.description%></li>
+      </ul>
+  <% end %>
+  </ul>
+
+<%= link_to 'New User', new_user_path %> -->
