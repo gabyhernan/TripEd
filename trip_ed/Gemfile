@@ -1,10 +1,4 @@
 source 'https://rubygems.org'
-<<<<<<< HEAD
-gem "faker"
-=======
-<<<<<<< HEAD
-gem "faker"
-=======
 
 gem 'faker'
 gem 'httparty'
@@ -12,10 +6,7 @@ gem 'pry'
 gem 'omniauth-linkedin-oauth2'
 gem 'ransack'
 gem 'simple_form'
->>>>>>> 2b58341ee153a0d619bd1632f1f3a5e53f793ae2
 
-
->>>>>>> c018e1d2e42adae3ad025ccfdc788b4baee38fee
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 # Use postgresql as the database for Active Record
