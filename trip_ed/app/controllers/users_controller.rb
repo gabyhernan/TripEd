@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @location = Location.find_by(params[:id])
+    @trip = Trip.find_by(params[:id])
   end
 
   # GET /users/new

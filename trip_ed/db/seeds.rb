@@ -36,16 +36,17 @@ Location.create([
 
 
 # Trip.create([
-#   { user_id: , location_id: 1, date: '10/10/16', start_time: '10:00AM', reserved: false },
-#   { user_id: , location_id: 2, date: '10/10/16', start_time: '10:00AM', reserved: false },
-#   { user_id: , location_id: 3, date: '10/10/16', start_time: '10:00AM', reserved: false },
-#   { user_id: , location_id: 4, date: '10/10/16', start_time: '10:00AM', reserved: false },
-#   { user_id: , location_id: 5, date: '10/10/16', start_time: '10:00AM', reserved: false },
-#   { user_id: , location_id: 6, date: '10/10/16', start_time: '10:00AM', reserved: false },
-#   { user_id: , location_id: 7, date: '10/10/16', start_time: '10:00AM', reserved: false },
-#   { user_id: , location_id: 8, date: '10/10/16', start_time: '10:00AM', reserved: false },
-#   { user_id: , location_id: 9, date: '10/10/16', start_time: '10:00AM', reserved: false },
-#   { user_id: , location_id: 10, date: '10/10/16', start_time: '10:00AM', reserved: false }
+#   { user_id: nil, location_id: 1, date: '10/10/16', start_time: '10:00AM', reserved: false },
+#   { user_id: nil, location_id: 2, date: '10/10/16', start_time: '10:00AM', reserved: false },
+#   { user_id: nil, location_id: 3, date: '10/10/16', start_time: '10:00AM', reserved: false },
+#   { user_id: nil, location_id: 4, date: '10/10/16', start_time: '10:00AM', reserved: false },
+#   { user_id: nil, location_id: 5, date: '10/10/16', start_time: '10:00AM', reserved: false },
+#   { user_id: nil, location_id: 6, date: '10/10/16', start_time: '10:00AM', reserved: false },
+#   { user_id: nil, location_id: 7, date: '10/10/16', start_time: '10:00AM', reserved: false },
+#   { user_id: nil, location_id: 8, date: '10/10/16', start_time: '10:00AM', reserved: false },
+#   { user_id: nil, location_id: 9, date: '10/10/16', start_time: '10:00AM', reserved: false },
+#   { user_id: nil, location_id: 4, date: '10/15/16', start_time: '1:00PM', reserved: false },
+#   { user_id: nil, location_id: 10, date: '10/10/16', start_time: '10:00AM', reserved: false }
 # ])
 
 puts "Created #{User.count} Users"

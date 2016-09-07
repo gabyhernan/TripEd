@@ -35,5 +35,20 @@
   <%= @location.accessibility %>
 </p>
 
+
+<% @trips.each do |trip| %>
+  <span> User Id: <%= trip.user_id %></span>
+  <span> Date: <%= trip.date %></span>
+  <span> Start Time: <%= trip.start_time %></span>
+  <span> Created at: <%= trip.created_at %></span>
+  <span> Updated at: <%= trip.updated_at %></span>
+  <span> location Id: <%= trip.location_id %></span><br>
+<% end %>
+
+
+
+
+
+<br>
 <%= link_to 'Edit', edit_location_path(@location) %> |
 <%= link_to 'Back', locations_path %>

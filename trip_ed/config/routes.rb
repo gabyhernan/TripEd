@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   match 'locations', to: "locations#index", via: [:get, :post]
   root to: 'users#signin'
+
   resources :trips
   resources :locations
   resources :users

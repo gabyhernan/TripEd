@@ -17,6 +17,11 @@ class LocationsController < ApplicationController
   # GET /locations/1
   # GET /locations/1.json
   def show
+    @location = Location.find(params[:id])
+    #@trips = Trip.where(params[:location_id])
+    # You have to query where location_id = location.id
+    @trips = Trip.where(location_id: @location.id)
+
   end
 
   # GET /locations/new
