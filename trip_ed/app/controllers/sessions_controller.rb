@@ -7,11 +7,12 @@ class SessionsController < ApplicationController
     if user
       session[:user_id] = user.id
       session[:type] = 'user'
+      session[:password_hash] = params[:password_hash]
       redirect_to '/users'
     elsif location
       session[:user_id] = location.id
       session[:type] = 'location'
-      # redirect_to '/location'
+      session[:password_hash] = params[:password_hash]
       redirect_to locations_path
     else
       redirect_to '/users/new'

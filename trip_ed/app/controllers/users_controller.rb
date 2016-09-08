@@ -30,7 +30,11 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @user.password = params[:password_hash]
+    @user.save!
     redirect_to '/users'
+
+
 
     # respond_to do |format|
     #   if @user.save

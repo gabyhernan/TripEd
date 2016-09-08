@@ -31,8 +31,12 @@ class LocationsController < ApplicationController
 
   # GET /locations/1/edit
   def edit
+<<<<<<< HEAD
     @trip = Trip.find(params[:id])
 
+=======
+    @location = Location.find(params[:id])
+>>>>>>> master
   end
 
   # POST /locations
@@ -63,8 +67,7 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.update(location_params)
-        format.html { redirect_to @location, notice: 'Location was successfully updated.' }
-        format.json { render :show, status: :ok, location: @location }
+        format.html { redirect_to '/locations', notice: 'Location was successfully updated.' }
       else
         format.html { render :edit }
         format.json { render json: @location.errors, status: :unprocessable_entity }
