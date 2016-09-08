@@ -5,7 +5,7 @@ class CreateTrips < ActiveRecord::Migration[5.0]
       t.references :location, foreign_key: true
       t.string :date
       t.string :start_time
-      t.boolean :reserved
+      t.boolean :reserved, :default => false
 
       t.timestamps
     end

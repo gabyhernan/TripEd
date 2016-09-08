@@ -37,15 +37,24 @@
 
 
 <% @trips.each do |trip| %>
-  <span> User Id: <%= trip.user_id %></span>
-  <span> Date: <%= trip.date %></span>
-  <span> Start Time: <%= trip.start_time %></span>
-  <span> Created at: <%= trip.created_at %></span>
-  <span> Updated at: <%= trip.updated_at %></span>
-  <span> location Id: <%= trip.location_id %></span><br>
+  <% if trip.reserved? %>
+    <p>Sorry! all trip for this trip have been reserved!</p>
+  <%else%>
+    <p>it is not reserved</p>
+
+  <div>
+    Date: <%= trip.date %><br>
+    Start Time: <%= trip.start_time %><br>
+    location Id: <%= trip.location_id %><br>
+
+    <%= form_tag( "/trips/reserve", method: "put" ) do %>
+      <%= hidden_field_tag "location", @location.id %>
+      <%= hidden_field_tag "trip", trip.id %>
+      <%= submit_tag "Reserve" %>
+     <%end%>
+    <% end %>
+ </div>
 <% end %>
-
-
 
 
 
