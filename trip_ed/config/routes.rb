@@ -2,9 +2,18 @@ Rails.application.routes.draw do
   match 'locations', to: "locations#index", via: [:get, :post]
   root to: 'users#signin'
 
-  resources :trips
+  # resources :trips
   resources :locations
   resources :users
+  # resources :trips, only: [:update, :edit]
+
+  resources :users do
+    resources :trips, only: [:update, :edit]
+  end
+
+  resources :locations do
+    resources :trips
+  end
 
   post 'users/signin' => 'sessions#create'
   get '/signout' => 'sessions#destroy'
