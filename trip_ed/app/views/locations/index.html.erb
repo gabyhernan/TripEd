@@ -1,26 +1,12 @@
-<h1>Locations</h1>
+<h1><%= @location.name %></h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Description</th>
-      <th>Subject</th>
-      <th>Accessibility</th>
-    </tr>
-  </thead>
+<div class="location-container">
+  <div><img src="<%= @location.image_url %>"></div>
+  <div>Address: <%= @location.address %></div>
+  <div>Description: <%= @location.description %></div>
+  <div>Subject: <%= @location.subject %></div>
+  <div>Accessibility: <%= @location.accessibility %></div>
+</div>
 
-  <tbody>
-      <tr>
-        <td><%= @location.name %></td>
-        <td><%= @location.address %></td>
-        <td><%= @location.description %></td>
-        <td><%= @location.subject %></td>
-        <td><%= @location.accessibility %></td>
-      </tr>
-  </tbody>
-
-</table>
-
+<a href="/locations/<%= @location.id %>/edit">Edit</a>
 <%= link_to 'Sign Out', signout_path %>
