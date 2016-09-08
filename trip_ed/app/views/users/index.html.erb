@@ -1,11 +1,22 @@
-<p id="notice"><%= notice %></p>
-<h3> This is where a search bar will someday go...</h3>
 
-<ul>
-<% @locations.each do |location| %>
-  <li style="list-style:none;"> <a href="/locations/<%=location.id%>"><%=location.name%></a></li>
+
+<p id="notice"><%= notice %></p>
+
+<h3> This is where a search bar will someday go...</h3>
+<%= form_tag(locations_path, :method => "get", id: "search-form") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Search Locations" %>
+<%= submit_tag "Search" %>
 <% end %>
-</ul>
+
+<% if @locations.present? %>
+    <ul>
+        <% @locations.each do |location|%>
+        <li><a href="/locations/<%=location.id%>"><%=location.name%></li>
+        <% end %>
+    </ul>
+<% else %>
+  <p>There are no locations matching this criteria: <%= params[:search] %>.</p>
+<% end %>
 
 
 <%= link_to 'New User', new_user_path %>
