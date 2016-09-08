@@ -2,8 +2,9 @@
 
 <p id="notice"><%= notice %></p>
 
-<h3> This is where a search bar will someday go...</h3>
-<%= form_tag(locations_path, :method => "get", id: "search-form") do %>
+<h3> Search for field trip by name, address, description, subject, or accessibility</h3>
+
+<%= form_tag(users_path, :method => "get", id: "search-form") do %>
 <%= text_field_tag :search, params[:search], placeholder: "Search Locations" %>
 <%= submit_tag "Search" %>
 <% end %>
