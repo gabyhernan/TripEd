@@ -10,6 +10,7 @@ class TripsController < ApplicationController
   # GET /trips/1
   # GET /trips/1.json
   def show
+
   end
 
   # GET /trips/new
@@ -19,6 +20,18 @@ class TripsController < ApplicationController
 
   # GET /trips/1/edit
   def edit
+
+    @trip = Trip.find(params[:id])
+    Trip.update(toggle[:reserved])
+  end
+
+  def reserve
+
+    @location = Location.find(params[:location])
+    @trip = Trip.find(params[:trip])
+    # debugger
+    @trip.toggle!(:reserved)
+    redirect_to location_path(@location)
   end
 
   # POST /trips
@@ -40,16 +53,14 @@ class TripsController < ApplicationController
   # PATCH/PUT /trips/1
   # PATCH/PUT /trips/1.json
   def update
-    respond_to do |format|
-      if @trip.update(trip_params)
-        format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
-        format.json { render :show, status: :ok, location: @trip }
-      else
-        format.html { render :edit }
-        format.json { render json: @trip.errors, status: :unprocessable_entity }
-      end
-    end
+
+    # @location = Location.find(params[:id])
+    # @trip = Trip.find(params[:id])
+    # @trip.toggle! (:reserved)
+    # @trip.save
+    # redirect_to location_path(@location)
   end
+
 
   # DELETE /trips/1
   # DELETE /trips/1.json

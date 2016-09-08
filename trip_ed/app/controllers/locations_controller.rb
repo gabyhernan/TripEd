@@ -31,7 +31,12 @@ class LocationsController < ApplicationController
 
   # GET /locations/1/edit
   def edit
+<<<<<<< HEAD
+    @trip = Trip.find(params[:id])
+
+=======
     @location = Location.find(params[:id])
+>>>>>>> master
   end
 
   # POST /locations
@@ -53,6 +58,13 @@ class LocationsController < ApplicationController
   # PATCH/PUT /locations/1
   # PATCH/PUT /locations/1.json
   def update
+    # @trip = Trip.find(params[:id])
+    # @location = Location.find(params[:id])
+    # @trip.toggle![:reserved]
+    # @trip.save
+    # redirect_to location_path(@location)
+
+
     respond_to do |format|
       if @location.update(location_params)
         format.html { redirect_to '/locations', notice: 'Location was successfully updated.' }
