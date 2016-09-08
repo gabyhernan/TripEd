@@ -7,6 +7,8 @@ class SessionsController < ApplicationController
     if user
       session[:user_id] = user.id
       session[:type] = 'user'
+      session[:password_hash] = params[:password_hash]
+      give_token
       redirect_to '/users'
     elsif location
       session[:user_id] = location.id
