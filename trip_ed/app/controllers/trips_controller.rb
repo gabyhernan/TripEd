@@ -56,6 +56,7 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:trip])
     # debugger
     @trip.toggle!(:reserved)
+    @trip.update(user_id: params[:user])
     redirect_to location_path(@location)
     # redirect_to locations_url
   end

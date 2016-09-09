@@ -50,6 +50,7 @@
     <%= form_tag( "/trips/reserve", method: "put" ) do %>
       <%= hidden_field_tag "location", @location.id %>
       <%= hidden_field_tag "trip", trip.id %>
+      <%= hidden_field_tag "user", session[:user_id] %>
       <%= submit_tag "Reserve" %>
      <%end%>
     <% end %>
