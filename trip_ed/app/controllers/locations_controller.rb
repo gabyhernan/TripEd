@@ -7,6 +7,7 @@ class LocationsController < ApplicationController
     # @locations = Location.all
     if session[:type] == 'location'
       @location = Location.find_by(id: session[:user_id])
+      @trips = Trip.where(location_id: @location.id)
     elsif session[:type] == 'user'
       if params[:search]
         @locations = Location.search(params[:search]).order("created_at DESC")
