@@ -52,19 +52,26 @@ class TripsController < ApplicationController
   # PATCH/PUT /trips/1
   # PATCH/PUT /trips/1.json
   def update
-    @location = Location.find(params[:location])
-    @trip = Trip.find(params[:trip])
-    # debugger
-    @trip.toggle!(:reserved)
-    redirect_to location_path(@location)
-    # redirect_to locations_url
+    if session[:type] == 'user'
+      @location = Location.find(params[:location])
+      @trip = Trip.find(params[:trip])
+      # debugger
+      @trip.toggle!(:reserved)
+      redirect_to location_path(@location)
+    elsif session[:type] == 'location'
+      @trip = Trip.find(params[:id])
+      @trip.update(trip_params)
+      redirect_to locations_url
+    end
   end
 
 
   # DELETE /trips/1
   # DELETE /trips/1.json
   def destroy
+    @trip = Trip.find(params[:id])
     @trip.destroy
+
     respond_to do |format|
       format.html { redirect_to locations_url, notice: 'Trip was successfully destroyed.' }
       format.json { head :no_content }
