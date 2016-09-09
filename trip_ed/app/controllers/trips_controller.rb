@@ -22,7 +22,7 @@ class TripsController < ApplicationController
   def edit
 
     @trip = Trip.find(params[:id])
-    Trip.update(toggle[:reserved])
+    # Trip.update(toggle[:reserved])
   end
 
   def reserve
@@ -56,9 +56,10 @@ class TripsController < ApplicationController
 
     # @location = Location.find(params[:id])
     # @trip = Trip.find(params[:id])
+    @trip.update(trip_params)
     # @trip.toggle! (:reserved)
     # @trip.save
-    # redirect_to location_path(@location)
+    redirect_to locations_url
   end
 
 
@@ -67,7 +68,7 @@ class TripsController < ApplicationController
   def destroy
     @trip.destroy
     respond_to do |format|
-      format.html { redirect_to trips_url, notice: 'Trip was successfully destroyed.' }
+      format.html { redirect_to locations_url, notice: 'Trip was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
