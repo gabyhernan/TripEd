@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       session[:type] = 'user'
       session[:password_hash] = params[:password_hash]
-      redirect_to '/users'
+      redirect_to locations_path
     elsif location
       session[:user_id] = location.id
       session[:type] = 'location'

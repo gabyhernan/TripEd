@@ -1,5 +1,5 @@
 class TripsController < ApplicationController
-  before_action :set_trip, only: [:show, :edit, :update, :destroy]
+  # before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
   # GET /trips
   # GET /trips.json
@@ -25,14 +25,13 @@ class TripsController < ApplicationController
     # Trip.update(toggle[:reserved])
   end
 
-  def reserve
-
-    @location = Location.find(params[:location])
-    @trip = Trip.find(params[:trip])
-    # debugger
-    @trip.toggle!(:reserved)
-    redirect_to location_path(@location)
-  end
+  # def reserve
+  #   @location = Location.find(params[:location])
+  #   @trip = Trip.find(params[:trip])
+  #   # debugger
+  #   @trip.toggle!(:reserved)
+  #   redirect_to location_path(@location)
+  # end
 
   # POST /trips
   # POST /trips.json
@@ -53,13 +52,12 @@ class TripsController < ApplicationController
   # PATCH/PUT /trips/1
   # PATCH/PUT /trips/1.json
   def update
-
-    # @location = Location.find(params[:id])
-    # @trip = Trip.find(params[:id])
-    @trip.update(trip_params)
-    # @trip.toggle! (:reserved)
-    # @trip.save
-    redirect_to locations_url
+    @location = Location.find(params[:location])
+    @trip = Trip.find(params[:trip])
+    # debugger
+    @trip.toggle!(:reserved)
+    redirect_to location_path(@location)
+    # redirect_to locations_url
   end
 
 
@@ -78,8 +76,8 @@ class TripsController < ApplicationController
     def set_trip
       @trip = Trip.find(params[:id])
     end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
+  #
+  #   # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
       params.require(:trip).permit(:user_id, :location_id, :date, :start_time, :reserved)
     end
