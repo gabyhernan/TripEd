@@ -2,11 +2,14 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
+    @users = User.all
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = set_user
+    @trips = Trip.where(user_id: @user.id)
   end
 
   # GET /users/new
