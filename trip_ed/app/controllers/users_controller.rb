@@ -1,20 +1,12 @@
 class UsersController < ApplicationController
-  # before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-      @locations = Location.all
-      if params[:search]
-        @locations = Location.search(params[:search]).order("created_at DESC")
-      else
-        @locations = Location.all.order('created_at DESC')
-      end
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
-    @location = Location.find_by(id: params[:id])
-    @trip = Trip.find_by(location_id: params[:id])
   end
 
   # GET /users/new

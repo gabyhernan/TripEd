@@ -7,9 +7,12 @@ class LocationsController < ApplicationController
     # @locations = Location.all
     if session[:type] == 'location'
       @location = Location.find_by(id: session[:user_id])
-      @trips = Trip.where(location_id: @location.id)
     elsif session[:type] == 'user'
-      redirect_to '/users'
+      if params[:search]
+        @locations = Location.search(params[:search]).order("created_at DESC")
+      else
+        @locations = Location.all.order('created_at DESC')
+      end
     else
       redirect_to '/users/signin'
     end
@@ -19,8 +22,6 @@ class LocationsController < ApplicationController
   # GET /locations/1.json
   def show
     @location = Location.find(params[:id])
-    #@trips = Trip.where(params[:location_id])
-    # You have to query where location_id = location.id
     @trips = Trip.where(location_id: @location.id)
 
   end
@@ -32,13 +33,8 @@ class LocationsController < ApplicationController
 
   # GET /locations/1/edit
   def edit
-<<<<<<< HEAD
-    @trip = Trip.find(params[:id])
-    @location = Location.find(params[:id])
-=======
     @location = Location.find(params[:id])
     @trip = Trip.find(params[:id])
->>>>>>> master
   end
 
   # POST /locations
