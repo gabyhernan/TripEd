@@ -1,4 +1,7 @@
 <% if session[:type] == "user" %>
+
+  <a href="/users/<%= @session %>">Profile</a>
+
   <h3> Search for field trip by name, address, description, subject, or accessibility</h3>
 
   <%= form_tag(users_path, :method => "get", id: "search-form") do %>
