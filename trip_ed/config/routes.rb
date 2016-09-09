@@ -2,10 +2,6 @@ Rails.application.routes.draw do
   match 'locations', to: "locations#index", via: [:get, :post]
   root to: 'users#signin'
 
-<<<<<<< HEAD
-
-=======
->>>>>>> master
   resources :locations
   resources :users
   # resources :trips, only: [:update, :edit]
@@ -29,4 +25,3 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
-
