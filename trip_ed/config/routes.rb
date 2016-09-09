@@ -2,15 +2,12 @@ Rails.application.routes.draw do
   match 'locations', to: "locations#index", via: [:get, :post]
   root to: 'users#signin'
 
-<<<<<<< HEAD
-#CHANGED THE ROUTES
-=======
-  # resources :trips
+
   resources :locations
   resources :users
   # resources :trips, only: [:update, :edit]
+  resources :trips
 
->>>>>>> master
   resources :users do
     resources :trips, only: [:update, :edit]
   end

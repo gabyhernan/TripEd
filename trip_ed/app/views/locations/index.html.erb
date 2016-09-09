@@ -6,7 +6,32 @@
   <div>Description: <%= @location.description %></div>
   <div>Subject: <%= @location.subject %></div>
   <div>Accessibility: <%= @location.accessibility %></div>
+  <a href="/locations/<%= @location.id %>/edit">Edit</a>
 </div>
 
-<a href="/locations/<%= @location.id %>/edit">Edit</a>
-<%= link_to 'Sign Out', signout_path %>
+<div class="trips-container">
+  <h4>Upcoming Trips</h4>
+  <% @trips.each do |trip| %>
+    <div>
+      Date: <%= trip.date %> |
+      Time: <%= trip.start_time %> |
+      <a href="/trips/<%=trip.id%>/edit">Edit</a> |
+      <%= link_to 'Delete', trip, method: :delete %>
+    </div>
+  <% end %>
+</div>
+
+<div>
+  <!-- This is an empty div that will jQuery in the new form DOM element -->
+</div>
+
+<div>
+  <!-- This is where the create a trip form will go -->
+</div>
+
+<br>
+
+
+<div>
+  <%= link_to 'Sign Out', signout_path %>
+</div>
