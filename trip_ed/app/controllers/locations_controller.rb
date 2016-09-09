@@ -10,6 +10,7 @@ class LocationsController < ApplicationController
       @trips = Trip.where(location_id: @location.id)
     elsif session[:type] == 'user'
       @session = session[:user_id]
+      @address = session[:address]
       if params[:search]
         @locations = Location.search(params[:search]).order("created_at DESC")
       else
@@ -26,6 +27,14 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
     @trips = Trip.where(location_id: @location.id)
     @session = session[:user_id]
+  end
+
+  mike is sayying we can define a method that hosuses the Httparty request
+  so like
+
+  def directions(address)
+    url = ("https://maps.googleapis.com/maps/api/geocode/json?address="+address+",+key=AIzaSyDgn3marDLka0pTrAKp5JRPSidCqdNiqVA")
+    response = HTTParty.get(url)
   end
 
   # GET /locations/new
