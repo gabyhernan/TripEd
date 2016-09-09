@@ -1,6 +1,15 @@
 <h1>This is where the user's profile could also go</h1>
 
+<h1>Welcome, <%=@user.name%>!</h1>
+
+
 <ul>
-  <li>trips</li>
-</ul> 
+  <% if @trips.length == 0 %>
+    <p>No trips!</p>
+  <% else %>
+  <% @trips.each do |trip| %>
+    <li><%=trip.location_id%>: <%= trip.date%>, at <%= trip.start_time%>.</li>
+  <% end %>
+<% end %>
+</ul>
 <%= link_to 'Back', @user%>

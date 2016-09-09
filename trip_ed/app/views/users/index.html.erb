@@ -4,6 +4,10 @@
 
 <h1> Some day, this will display the user's profile. </h1>
 
+<% @users.each do |user| %>
+  <%= user.name %> 
+<% end %>
+
 <h1> We could put the trips right below here!</h1>
 
 <%= link_to 'Sign Out', signout_path %>
