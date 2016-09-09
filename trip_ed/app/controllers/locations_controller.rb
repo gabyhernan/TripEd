@@ -34,7 +34,9 @@ class LocationsController < ApplicationController
   # GET /locations/1/edit
   def edit
     @location = Location.find(params[:id])
-    @trip = Trip.find(params[:id])
+    if session[:type] == 'user'
+      @trip = Trip.find(params[:id])
+    end
   end
 
   # POST /locations
