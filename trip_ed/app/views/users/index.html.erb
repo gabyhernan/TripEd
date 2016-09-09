@@ -2,22 +2,12 @@
 
 <p id="notice"><%= notice %></p>
 
-<h3> Search for field trip by name, address, description, subject, or accessibility</h3>
+<h1> Some day, this will display the user's profile. </h1>
 
-<%= form_tag(users_path, :method => "get", id: "search-form") do %>
-<%= text_field_tag :search, params[:search], placeholder: "Search Locations" %>
-<%= submit_tag "Search" %>
+<% @users.each do |user| %>
+  <%= user.name %> 
 <% end %>
 
-<% if @locations.present? %>
-    <ul>
-        <% @locations.each do |location|%>
-        <li><a href="/locations/<%=location.id%>"><%=location.name%></li>
-        <% end %>
-    </ul>
-<% else %>
-  <p>There are no locations matching this criteria: <%= params[:search] %>.</p>
-<% end %>
-
+<h1> We could put the trips right below here!</h1>
 
 <%= link_to 'Sign Out', signout_path %>

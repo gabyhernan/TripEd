@@ -1,20 +1,15 @@
 class UsersController < ApplicationController
-  # before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-      @locations = Location.all
-      if params[:search]
-        @locations = Location.search(params[:search]).order("created_at DESC")
-      else
-        @locations = Location.all.order('created_at DESC')
-      end
+    @users = User.all
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
-    @location = Location.find_by(id: params[:id])
-    @trip = Trip.find_by(location_id: params[:id])
+    @user = set_user
+    @trips = Trip.where(user_id: @user.id)
   end
 
   # GET /users/new
@@ -32,19 +27,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.password = params[:password_hash]
     @user.save!
-    redirect_to '/users'
-
-
-
-    # respond_to do |format|
-    #   if @user.save
-    #     format.html { redirect_to @user, notice: 'User was successfully created.' }
-    #     format.json { render :show, status: :created, location: @user }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @user.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    redirect_to '/users/signin'
   end
 
   # PATCH/PUT /users/1
@@ -61,6 +44,7 @@ class UsersController < ApplicationController
     end
   end
 
+
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
@@ -73,9 +57,9 @@ class UsersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    # def set_user
-    #   @user = User.find(params[:id])
-    # end
+    def set_user
+      @user = User.find(params[:id])
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params

@@ -1,37 +1,60 @@
-<h1><%= @location.name %></h1>
+<% if session[:type] == "user" %>
+  <h3> Search for field trip by name, address, description, subject, or accessibility</h3>
 
-<div class="location-container">
-  <div><img src="<%= @location.image_url %>"></div>
-  <div>Address: <%= @location.address %></div>
-  <div>Description: <%= @location.description %></div>
-  <div>Subject: <%= @location.subject %></div>
-  <div>Accessibility: <%= @location.accessibility %></div>
-  <a href="/locations/<%= @location.id %>/edit">Edit</a>
-</div>
-
-<div class="trips-container">
-  <h4>Upcoming Trips</h4>
-  <% @trips.each do |trip| %>
-    <div>
-      Date: <%= trip.date %> |
-      Time: <%= trip.start_time %> |
-      <a href="/trips/<%=trip.id%>/edit">Edit</a> |
-      <%= link_to 'Delete', trip, method: :delete %>
-    </div>
+  <%= form_tag(users_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Locations" %>
+    <%= submit_tag "Search" %>
   <% end %>
-</div>
 
-<div>
-  <!-- This is an empty div that will jQuery in the new form DOM element -->
-</div>
+  <% if @locations.present? %>
+      <ul>
+          <% @locations.each do |location|%>
+          <li><a href="/locations/<%=location.id%>"><%=location.name%></li>
+          <% end %>
+      </ul>
+  <% else %>
+    <p>There are no locations matching this criteria: <%= params[:search] %>.</p>
+  <% end %>
 
-<div>
-  <!-- This is where the create a trip form will go -->
-</div>
+<% elsif session[:type] == "location"%>
+  <h1><%= @location.name %></h1>
 
-<br>
+  <div class="location-container">
+    <div><img src="<%= @location.image_url %>"></div>
+    <div>Address: <%= @location.address %></div>
+    <div>Description: <%= @location.description %></div>
+    <div>Subject: <%= @location.subject %></div>
+    <div>Accessibility: <%= @location.accessibility %></div>
+    <a href="/locations/<%= @location.id %>/edit">Edit</a>
+  </div>
 
+  <div class="trips-container">
+    <% if @trips.length == 0 %>
+      <h4>You have no upcoming trips!</h4>
+    <% else %>
+      <h4>Upcoming Trips</h4>
+      <% @trips.each do |trip| %>
+        <div>
+          Date: <%= trip.date %> |
+          Time: <%= trip.start_time %> |
+          <a href="/trips/<%=trip.id%>/edit">Edit</a> |
+          <%= link_to 'Delete', trip, method: :delete %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 
+  <div>
+    <!-- This is an empty div that will jQuery in the new form DOM element -->
+  </div>
+
+  <div>
+    <!-- This is where the create a trip form will go -->
+  </div>
+
+  <br>
+
+<% end%>
 <div>
   <%= link_to 'Sign Out', signout_path %>
 </div>
