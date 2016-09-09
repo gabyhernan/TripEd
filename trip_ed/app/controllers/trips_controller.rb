@@ -16,6 +16,7 @@ class TripsController < ApplicationController
   # GET /trips/new
   def new
     @trip = Trip.new
+    @session = session[:user_id]
   end
 
   # GET /trips/1/edit
@@ -40,7 +41,7 @@ class TripsController < ApplicationController
 
     respond_to do |format|
       if @trip.save
-        format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
+        format.html { redirect_to locations_path, notice: 'Trip was successfully created.' }
         format.json { render :show, status: :created, location: @trip }
       else
         format.html { render :new }
