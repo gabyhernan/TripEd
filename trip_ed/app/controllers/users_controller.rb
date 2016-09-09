@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  # before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = set_user
+    @user = User.find(params[:id])
     @trips = Trip.where(user_id: @user.id)
   end
 
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.password = params[:password_hash]
     @user.save!
-    redirect_to '/users/signin'
+    redirect_to '/'
   end
 
   # PATCH/PUT /users/1

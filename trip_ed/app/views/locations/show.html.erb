@@ -5,15 +5,6 @@
   <%= @location.name %>
 </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @location.email %>
-</p>
-
-<p>
-  <strong>Password hash:</strong>
-  <%= @location.password_hash %>
-</p>
 
 <p>
   <strong>Address:</strong>
@@ -60,5 +51,5 @@
 
 
 <br>
-<%= link_to 'Edit', edit_location_path(@location) %> |
-<%= link_to 'Back', users_path %>
+<a href="/users/<%= @session %>">Profile</a>
+<%= link_to 'Back', locations_path %>
