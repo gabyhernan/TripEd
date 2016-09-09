@@ -54,12 +54,11 @@ class TripsController < ApplicationController
   # PATCH/PUT /trips/1.json
   def update
 
-    @location = Location.find(params[:location])
-    @trip = Trip.find(params[:trip])
-    # debugger
-    @trip.toggle!(:reserved)
-    @trip.update(user_id: params[:user])
-    redirect_to location_path(@location)
+    # @location = Location.find(params[:location])
+    # @trip = Trip.find(params[:trip])
+    # # debugger
+    # @trip.toggle!(:reserved)
+    # redirect_to location_path(@location)
     # redirect_to locations_url
 
     if session[:type] == 'user'
@@ -67,6 +66,7 @@ class TripsController < ApplicationController
       @trip = Trip.find(params[:trip])
       # debugger
       @trip.toggle!(:reserved)
+      @trip.update(user_id: params[:user])
       redirect_to location_path(@location)
     elsif session[:type] == 'location'
       @trip = Trip.find(params[:id])
