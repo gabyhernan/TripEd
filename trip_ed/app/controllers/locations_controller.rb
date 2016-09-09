@@ -23,7 +23,6 @@ class LocationsController < ApplicationController
   def show
     @location = Location.find(params[:id])
     @trips = Trip.where(location_id: @location.id)
-
   end
 
   # GET /locations/new
