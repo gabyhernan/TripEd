@@ -32,8 +32,13 @@ class LocationsController < ApplicationController
 
   # GET /locations/1/edit
   def edit
+<<<<<<< HEAD
     @trip = Trip.find(params[:id])
     @location = Location.find(params[:id])
+=======
+    @location = Location.find(params[:id])
+    @trip = Trip.find(params[:id])
+>>>>>>> master
   end
 
   # POST /locations
