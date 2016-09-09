@@ -38,7 +38,7 @@
           Date: <%= trip.date %> |
           Time: <%= trip.start_time %> |
           <a href="/trips/<%=trip.id%>/edit">Edit</a> |
-          <%= link_to 'Delete', trip, method: :delete %>
+          <%= link_to 'Destroy', trip, method: :delete %>
         </div>
       <% end %>
     <% end %>
@@ -50,6 +50,7 @@
 
   <div>
     <!-- This is where the create a trip form will go -->
+
   </div>
 
   <br>
