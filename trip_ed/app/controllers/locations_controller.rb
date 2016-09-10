@@ -12,10 +12,17 @@ class LocationsController < ApplicationController
       @trips = Trip.where(location_id: @location.id)
     elsif session[:type] == 'user'
       @session = session[:user_id]
+      my_location
+      @mylat = @coordinates["lat"]
+      @mylng = @coordinates["lng"]
       if params[:search]
         @locations = Location.search(params[:search]).order("created_at DESC")
+        get_locations_coords(@locations)
+        @location_coords
       else
         @locations = Location.all.order('created_at DESC')
+        get_locations_coords(@locations)
+        @location_coords
       end
     else
       redirect_to '/users/signin'
@@ -28,6 +35,28 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
     @trips = Trip.where(location_id: @location.id)
     @session = session[:user_id]
+  end
+
+  def my_location
+    address = session[:school_address]
+    key = ENV["GOOGLE_KEY"]
+    url = ("https://maps.googleapis.com/maps/api/geocode/json?address="+address+",+key="+key)
+    response = HTTParty.get(url)
+    json = JSON.parse(response.body)
+    @coordinates = json["results"][0]["geometry"]["location"]
+  end
+
+  def get_locations_coords(locations)
+    @location_coords = []
+    locations.each do |location|
+      key = ENV["GOOGLE_KEY"]
+      address = location.address
+      url = ("https://maps.googleapis.com/maps/api/geocode/json?address="+address+",+key="+key)
+      response = HTTParty.get(url)
+      json = JSON.parse(response.body)
+      @location_coords.push([(location.name),(json["results"][0]["geometry"]["location"])])
+    end
+    @location_coords
   end
 
   # GET /locations/new
