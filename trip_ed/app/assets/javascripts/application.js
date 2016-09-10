@@ -26,14 +26,17 @@ $(document).ready(function () {
   $('button').on('click', function(el){
     var tempVal = $(this).attr('id');
     var tempNumber = $(this).attr('data-id');
-    // tempNumber = parseInt(tempNumber)
+    tempNumber = parseInt(tempNumber)
     console.log(tempVal);
     console.log(tempNumber);
 
-    var newurl = "https://www.google.com/maps/embed/v1/directions?origin=10+E+21st+St&destination=2900+Southern+Blvd&mode="+tempVal+"&key=AIzaSyB2C2zMcCaZjfyvQFG7kSVtRmdJhVDqNGY";
+    // @user_address = school_address
+    var newurl = "https://www.google.com/maps/embed/v1/directions?origin=10+E+21st+St&destination=2538+eagle+run+dr&mode="+tempVal+"&key=AIzaSyB2C2zMcCaZjfyvQFG7kSVtRmdJhVDqNGY";
 
     var $tempmap = $('#mapscreen[data-id='+tempNumber+']');
+    console.log($tempmap)
     $tempmap.attr('src', newurl);
+    $('#mapscreen').attr('src', newurl)
 
 
     // $('#mapscreen').attr('src', newurl);
