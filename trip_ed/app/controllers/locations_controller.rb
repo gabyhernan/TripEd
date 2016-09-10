@@ -16,6 +16,8 @@ class LocationsController < ApplicationController
         @locations = Location.search(params[:search]).order("created_at DESC")
       else
         @locations = Location.all.order('created_at DESC')
+        get_locations_coords(@locations)
+        puts @location_coords
       end
     else
       redirect_to '/users/signin'
@@ -36,6 +38,17 @@ class LocationsController < ApplicationController
     response = HTTParty.get(url)
     json = JSON.parse(response.body)
     @coordinates = json["results"][0]["geometry"]["location"]
+  end
+
+  def get_locations_coords(locations)
+    @location_coords = []
+    locations.each do |location|
+      address = location.address
+      url = ("https://maps.googleapis.com/maps/api/geocode/json?address="+address+",+key=AIzaSyDgn3marDLka0pTrAKp5JRPSidCqdNiqVA")
+      response = HTTParty.get(url)
+      json = JSON.parse(response.body)
+      @location_coords.push(json["results"][0]["geometry"]["location"])
+    end
   end
 
   # GET /locations/new
