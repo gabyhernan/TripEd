@@ -37,7 +37,8 @@ class LocationsController < ApplicationController
 
   def directions
     address = session[:school_address]
-    url = ("https://maps.googleapis.com/maps/api/geocode/json?address="+address+",+key=AIzaSyDgn3marDLka0pTrAKp5JRPSidCqdNiqVA")
+    key = ENV["GOOGLE_KEY"]
+    url = ("https://maps.googleapis.com/maps/api/geocode/json?address="+address+",+key="+key)
     response = HTTParty.get(url)
     json = JSON.parse(response.body)
     @coordinates = json["results"][0]["geometry"]["location"]
@@ -46,8 +47,9 @@ class LocationsController < ApplicationController
   def get_locations_coords(locations)
     @location_coords = []
     locations.each do |location|
+      key = ENV["GOOGLE_KEY"]
       address = location.address
-      url = ("https://maps.googleapis.com/maps/api/geocode/json?address="+address+",+key=AIzaSyDgn3marDLka0pTrAKp5JRPSidCqdNiqVA")
+      url = ("https://maps.googleapis.com/maps/api/geocode/json?address="+address+",+key="+key)
       response = HTTParty.get(url)
       json = JSON.parse(response.body)
       @location_coords.push(json["results"][0]["geometry"]["location"])
