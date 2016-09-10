@@ -26,7 +26,7 @@ $(document).ready(function () {
   $('button').on('click', function(el){
     var tempVal = $(this).attr('id');
     var tempNumber = $(this).attr('data-id');
-    tempNumber = parseInt(tempNumber)
+    // tempNumber = parseInt(tempNumber)
     console.log(tempVal);
     console.log(tempNumber);
 
