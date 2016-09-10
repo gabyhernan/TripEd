@@ -57,7 +57,6 @@ class LocationsController < ApplicationController
       @location_coords.push([(location.name),(json["results"][0]["geometry"]["location"])])
     end
     @location_coords
-    debugger
   end
 
   # GET /locations/new

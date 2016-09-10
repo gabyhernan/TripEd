@@ -1,11 +1,13 @@
 <% if session[:type] == "user" %>
+
   <div class="nav-bar">
-    <div class="logo">tripED</div>
+    <div class="logo card-panel teal lighten-2">tripED</div>
     <ul class="nav-menu">
       <li><a href="/users/<%= @session %>">Profile</a></li>
       <li><%= link_to 'Sign Out', signout_path %></li>
     </ul>
   </div>
+
 
   <h1>School house not rockin'? Book a field trip.</h1>
 
@@ -17,9 +19,10 @@
 
   <!--if there are search locations that match query, display below -->
   <% if @locations.present? %>
-      <ul>
+      <ul class=''>
           <% @locations.each do |location|%>
-          <li><a href="/locations/<%=location.id%>"><%=location.name%></a></li>
+
+          <li class='card-panel blue-grey lighten-5'>  <a href="/locations/<%=location.id%>"><%=location.name%></a></li>
           <% end %>
       </ul>
   <% else %>
@@ -78,8 +81,9 @@
     }
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgn3marDLka0pTrAKp5JRPSidCqdNiqVA&callback=initMap"></script>
-
+</div>
 <% elsif session[:type] == "location"%>
+<div class="container">
   <div class="nav-bar">
     <div class="logo">tripED</div>
     <ul class="nav-menu">
@@ -119,3 +123,4 @@
   <br>
 
 <% end %>
+</div>
