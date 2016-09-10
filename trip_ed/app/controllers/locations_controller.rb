@@ -54,7 +54,7 @@ class LocationsController < ApplicationController
       url = ("https://maps.googleapis.com/maps/api/geocode/json?address="+address+",+key="+key)
       response = HTTParty.get(url)
       json = JSON.parse(response.body)
-      @location_coords.push(json["results"][0]["geometry"]["location"])
+      @location_coords.push([(location.name),(json["results"][0]["geometry"]["location"])])
     end
     @location_coords
     debugger
