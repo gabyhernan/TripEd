@@ -17,7 +17,7 @@ class LocationsController < ApplicationController
       else
         @locations = Location.all.order('created_at DESC')
         get_locations_coords(@locations)
-        puts @location_coords
+        @location_coords
       end
     else
       redirect_to '/users/signin'

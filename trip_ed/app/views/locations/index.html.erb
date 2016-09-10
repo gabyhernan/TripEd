@@ -51,10 +51,12 @@
       });
 
       var markers = [
-        <% @locations_coords.each do |location|%>
-        [location["lat"],location["lng"]]
-        <% end %>
+
       ]
+
+      for (var i = 0; i < markers.length; i++){
+        console.log(markers[i])
+      }
 
     }
   </script>
@@ -71,6 +73,13 @@
     <div>Accessibility: <%= @location.accessibility %></div>
     <a href="/locations/<%= @location.id %>/edit">Edit</a>
   </div>
+
+  <ul>
+    <% @location_coords.each do |location|%>
+    <li>location["lat"],location["lng"]</li>
+    <% end %>
+  </ul>
+
 
   <div class="trips-container">
     <% if @trips.length == 0 %>
