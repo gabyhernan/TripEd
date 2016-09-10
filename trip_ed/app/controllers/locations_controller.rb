@@ -4,13 +4,14 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
-    # @locations = Location.all
     if session[:type] == 'location'
       @location = Location.find_by(id: session[:user_id])
       @trips = Trip.where(location_id: @location.id)
     elsif session[:type] == 'user'
       @session = session[:user_id]
-      @address = session[:address]
+      directions
+      @lat = @coordinates["lat"]
+      @lng = @coordinates["lng"]
       if params[:search]
         @locations = Location.search(params[:search]).order("created_at DESC")
       else
@@ -29,12 +30,12 @@ class LocationsController < ApplicationController
     @session = session[:user_id]
   end
 
-  mike is sayying we can define a method that hosuses the Httparty request
-  so like
-
-  def directions(address)
+  def directions
+    address = session[:school_address]
     url = ("https://maps.googleapis.com/maps/api/geocode/json?address="+address+",+key=AIzaSyDgn3marDLka0pTrAKp5JRPSidCqdNiqVA")
     response = HTTParty.get(url)
+    json = JSON.parse(response.body)
+    @coordinates = json["results"][0]["geometry"]["location"]
   end
 
   # GET /locations/new
