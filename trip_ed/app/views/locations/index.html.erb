@@ -12,7 +12,7 @@
   <% if @locations.present? %>
       <ul>
           <% @locations.each do |location|%>
-          <li><a href="/locations/<%=location.id%>"><%=location.name%></li>
+          <li><a href="/locations/<%=location.id%>"><%=location.name%></a></li>
           <% end %>
       </ul>
   <% else %>
@@ -25,10 +25,27 @@
    <script>
       var map;
       function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: <%=@lat%>, lng: <%=@lng%>},
+        var myLatLng = {lat: <%=@lat%>, lng: <%=@lng%>}
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          disableDefaultUI: true,
+          center: myLatLng,
           zoom: 12
         });
+
+        var infowindow = new google.maps.InfoWindow({
+          content: "<%=session[:school_address]%>"
+        });
+
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          animation: google.maps.Animation.DROP,
+        });
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+
       }
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgn3marDLka0pTrAKp5JRPSidCqdNiqVA&callback=initMap"></script>
