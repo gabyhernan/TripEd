@@ -1,5 +1,9 @@
 <div class="nav-bar">
-  <a href="/users/<%= @session %>">Profile</a>
+  <div class="logo">tripED</div>
+  <ul class="nav-menu">
+    <li><a href="/users/<%= @session %>">Profile</a></li>
+    <li><%= link_to 'Sign Out', signout_path %></li>
+  </ul>
 </div>
 
 <div class="location-information">
@@ -17,7 +21,6 @@
     <!-- <p>Sorry! all trips for this location have been reserved!</p> -->
   <% else %>
     <div>
-
       <%= form_tag( "/trips/reserve", method: "put" ) do %>
         <%= hidden_field_tag "location", @location.id %>
         <%= hidden_field_tag "trip", trip.id %>
@@ -31,4 +34,4 @@
   <% end %>
 <% end %>
 
-<%= link_to 'Back', locations_path %>
+<div><%= link_to 'Back', locations_path %></div>

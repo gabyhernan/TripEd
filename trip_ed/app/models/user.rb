@@ -1,6 +1,7 @@
  require 'bcrypt'
 class User < ApplicationRecord
   has_many :trips
+  validates :email, uniqueness: true
 
     # users.password_hash in the database is a :string
   include BCrypt
