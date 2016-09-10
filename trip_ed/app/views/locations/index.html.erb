@@ -42,6 +42,8 @@
           zoom: 10
         });
 
+        var bounds = new google.maps.LatLngBounds();
+
         var infowindow = new google.maps.InfoWindow({
           content: "<%=session[:school_address]%>"
         });
@@ -62,21 +64,23 @@
           <% end %>
         ];
 
-        for (var i = 0; i < markers.length; i++){
+        var newinfowindow = new google.maps.InfoWindow({
+          content: "holding..."
+        });
 
-          var newinfowindow = new google.maps.InfoWindow({
-            content: markers[i][0]
-          });
+        for (var i = 0; i < markers.length; i++){
 
           var newMarker = new google.maps.Marker({
             position: {lat: markers[i][1], lng: markers[i][2]},
             map: map,
+            title:markers[i][0],
             animation: google.maps.Animation.DROP
           });
 
-          newMarker.addListener('click', function() {
-            newinfowindow.open(map, newMarker);
-          });
+          google.maps.event.addListener(newMarker, 'click', function(){
+            newinfowindow.setContent(this.title);
+            newinfowindow.open(map, this);
+          })
       }
     }
     </script>
