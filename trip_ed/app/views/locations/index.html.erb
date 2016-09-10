@@ -1,5 +1,9 @@
 <%= link_to 'Sign Out', signout_path %>
 <% if session[:type] == "user" %>
+<div class="container">
+
+<div class="header card-panel teal lighten-2"> Trip Ed Logo should go here</div>
+
 
   <a href="/users/<%= @session %>">Profile</a>
 
@@ -11,16 +15,19 @@
   <% end %>
 
   <% if @locations.present? %>
-      <ul>
+      <ul class=''>
           <% @locations.each do |location|%>
-          <li><a href="/locations/<%=location.id%>"><%=location.name%></li>
+          <li class='card-panel blue-grey lighten-5'>  <a href="/locations/<%=location.id%>"><%=location.name%> </li>
           <% end %>
       </ul>
   <% else %>
     <p>There are no locations matching this criteria: <%= params[:search] %>.</p>
   <% end %>
+</div>
+
 
 <% elsif session[:type] == "location"%>
+<div class="container">
   <div class="nav-bar">
     <a href="/locations/<%= @location.id %>/edit">Edit</a>
   </div>
@@ -56,3 +63,4 @@
   <br>
 
 <% end %>
+</div>
