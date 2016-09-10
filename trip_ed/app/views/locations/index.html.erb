@@ -1,10 +1,11 @@
+<%= link_to 'Sign Out', signout_path %>
 <% if session[:type] == "user" %>
 
   <a href="/users/<%= @session %>">Profile</a>
 
   <h3> Search for field trip by name, address, description, subject, or accessibility</h3>
 
-  <%= form_tag(users_path, :method => "get", id: "search-form") do %>
+  <%= form_tag(locations_path, :method => "get", id: "search-form") do %>
     <%= text_field_tag :search, params[:search], placeholder: "Search Locations" %>
     <%= submit_tag "Search" %>
   <% end %>
@@ -20,15 +21,16 @@
   <% end %>
 
 <% elsif session[:type] == "location"%>
-  <h1><%= @location.name %></h1>
+  <div class="nav-bar">
+    <a href="/locations/<%= @location.id %>/edit">Edit</a>
+  </div>
 
   <div class="location-container">
     <div><img src="<%= @location.image_url %>"></div>
-    <div>Address: <%= @location.address %></div>
-    <div>Description: <%= @location.description %></div>
-    <div>Subject: <%= @location.subject %></div>
-    <div>Accessibility: <%= @location.accessibility %></div>
-    <a href="/locations/<%= @location.id %>/edit">Edit</a>
+    <h1><%= @location.name %></h1>
+    <div><%= @location.address %></div><br>
+    <div><%= @location.description %></div><br>
+    <div>Subject: <%= @location.subject %> | Accessibility: <%= @location.accessibility %></div>
   </div>
 
   <div class="trips-container">
@@ -47,20 +49,10 @@
     <% end %>
   </div>
 
-  <div>
-    <!-- This is an empty div that will jQuery in the new form DOM element -->
-  </div>
+  <br>
 
-  <div>
-    <a href="/trips/new">Create New</a>
-    <!-- This is where the create a trip form will go -->
-
-
-  </div>
+  <div><a href="/trips/new">Create New</a></div>
 
   <br>
 
 <% end %>
-<div>
-  <%= link_to 'Sign Out', signout_path %>
-</div>
