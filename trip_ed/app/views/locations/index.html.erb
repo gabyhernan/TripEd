@@ -21,21 +21,22 @@
    <% end %>
   <% end %>
 
-  <!--if there are search locations that match query, display below -->
-  <% if @locations.present? %>
-      <ul class=''>
-          <% @locations.each do |location|%>
+<div class="row">
+  <div class="col s7 push-s5">
+    <% if @locations.present? %>
+        <ul class=''>
+            <% @locations.each do |location|%>
 
-          <li class='card-panel blue-grey lighten-5'>  <a href="/locations/<%=location.id%>"><%=location.name%></a></li>
-          <% end %>
-      </ul>
-  <% else %>
-    <p>There are no locations matching this criteria: <%= params[:search] %>.</p>
-  <% end %>
-    <!--map goes here -->
-   <div id="map"></div>
-   <!--script that powers the map-->
-   <script>
+            <li class='card-panel blue-grey lighten-5'>  <a href="/locations/<%=location.id%>"><%=location.name%></a></li>
+            <% end %>
+        </ul>
+    <% else %>
+      <p>There are no locations matching this criteria: <%= params[:search] %>.</p>
+    <% end %>
+  </div>
+  <div class="col s5 pull-s7">
+     <div id="map"></div>
+      <script>
       var map;
       function initMap() {
         var myLatLng = {lat: <%=@mylat%>, lng: <%=@mylng%>}
@@ -89,6 +90,7 @@
     }
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgn3marDLka0pTrAKp5JRPSidCqdNiqVA&callback=initMap"></script>
+  </div>
 </div>
 <% elsif session[:type] == "location"%>
 <div class="container">
