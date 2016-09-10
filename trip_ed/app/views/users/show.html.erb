@@ -1,15 +1,22 @@
-<h1>This is where the user's profile could also go</h1>
+<div class="nav-bar">
+  <div class="logo">tripED</div>
+  <ul class="nav-menu">
+    <li><%= link_to 'Sign Out', signout_path %></li>
+  </ul>
+</div>
 
 <h1>Welcome, <%=@user.name%>!</h1>
 
 
-<ul>
-  <% if @trips.length == 0 %>
-    <p>No trips!</p>
-  <% else %>
-  <% @trips.each do |trip| %>
-    <li><%=trip.location.name%>: <%= trip.date%>, at <%= trip.start_time%>.</li>
-  <% end %>
+<% if @trips.length == 0 %>
+  <h3>You currently have no trips planned</h3>
+<% else %>
+  <h3>Your upcoming trips</h3>
+  <ul>
+    <% @trips.each do |trip| %>
+      <li><%=trip.location.name%>: <%= trip.date%>, at <%= trip.start_time%>.</li>
+    <% end %>
+  </ul>
 <% end %>
-</ul>
+
 <%= link_to 'Back', locations_path %>

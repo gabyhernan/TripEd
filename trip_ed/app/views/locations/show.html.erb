@@ -1,55 +1,37 @@
-<p id="notice"><%= notice %></p>
+<div class="nav-bar">
+  <div class="logo">tripED</div>
+  <ul class="nav-menu">
+    <li><a href="/users/<%= @session %>">Profile</a></li>
+    <li><%= link_to 'Sign Out', signout_path %></li>
+  </ul>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @location.name %>
-</p>
+<div class="location-information">
+  <div><img src="<%= @location.image_url %>"></div>
+  <h1><%= @location.name %></h1>
+  <div class="address"><%= @location.address %></div><br>
+  <div class="description"><%= @location.description %></div><br>
+  <div class="subj-access">Subject: <%= @location.subject %> | Accessibility: <%= @location.accessibility %></div>
+</div>
 
-
-<p>
-  <strong>Address:</strong>
-  <%= @location.address %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @location.description %>
-</p>
-
-<p>
-  <strong>Subject:</strong>
-  <%= @location.subject %>
-</p>
-
-<p>
-  <strong>Accessibility:</strong>
-  <%= @location.accessibility %>
-</p>
-
+<br>
 
 <% @trips.each do |trip| %>
   <% if trip.reserved? %>
-    <p>Sorry! all trip for this trip have been reserved!</p>
-  <%else%>
-    <p>it is not reserved</p>
+    <!-- <p>Sorry! all trips for this location have been reserved!</p> -->
+  <% else %>
+    <div>
+      <%= form_tag( "/trips/reserve", method: "put" ) do %>
+        <%= hidden_field_tag "location", @location.id %>
+        <%= hidden_field_tag "trip", trip.id %>
+        <%= hidden_field_tag "user", session[:user_id] %>
+        <%= submit_tag "Reserve" %>
+        Date: <%= trip.date %> | Start Time: <%= trip.start_time %>
+      <% end %>
+      <br>
+    </div>
 
-  <div>
-    Date: <%= trip.date %><br>
-    Start Time: <%= trip.start_time %><br>
-    location Id: <%= trip.location_id %><br>
-
-    <%= form_tag( "/trips/reserve", method: "put" ) do %>
-      <%= hidden_field_tag "location", @location.id %>
-      <%= hidden_field_tag "trip", trip.id %>
-      <%= hidden_field_tag "user", session[:user_id] %>
-      <%= submit_tag "Reserve" %>
-     <%end%>
-    <% end %>
- </div>
+  <% end %>
 <% end %>
 
-
-
-<br>
-<a href="/users/<%= @session %>">Profile</a>
-<%= link_to 'Back', locations_path %>
+<div><%= link_to 'Back', locations_path %></div>

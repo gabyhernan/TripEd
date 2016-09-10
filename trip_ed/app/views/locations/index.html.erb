@@ -1,11 +1,16 @@
 <% if session[:type] == "user" %>
+  <div class="nav-bar">
+    <div class="logo">tripED</div>
+    <ul class="nav-menu">
+      <li><a href="/users/<%= @session %>">Profile</a></li>
+      <li><%= link_to 'Sign Out', signout_path %></li>
+    </ul>
+  </div>
 
-  <a href="/users/<%= @session %>">Profile</a>
-
-  <h3> Search for field trip by name, address, description, subject, or accessibility</h3>
+  <h1>School house not rockin'? Book a field trip.</h1>
 
   <!--this is a search bar-->
-  <%= form_tag(users_path, :method => "get", id: "search-form") do %>
+  <%= form_tag(locations_path, :method => "get", id: "search-form") do %>
     <%= text_field_tag :search, params[:search], placeholder: "Search Locations" %>
     <%= submit_tag "Search" %>
   <% end %>
@@ -63,15 +68,20 @@
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgn3marDLka0pTrAKp5JRPSidCqdNiqVA&callback=initMap"></script>
 
 <% elsif session[:type] == "location"%>
-  <h1><%= @location.name %></h1>
+  <div class="nav-bar">
+    <div class="logo">tripED</div>
+    <ul class="nav-menu">
+      <li><a href="/locations/<%= @location.id %>/edit">Edit</a></li>
+      <li><%= link_to 'Sign Out', signout_path %></li>
+    </ul>
+  </div>
 
   <div class="location-container">
     <div><img src="<%= @location.image_url %>"></div>
-    <div>Address: <%= @location.address %></div>
-    <div>Description: <%= @location.description %></div>
-    <div>Subject: <%= @location.subject %></div>
-    <div>Accessibility: <%= @location.accessibility %></div>
-    <a href="/locations/<%= @location.id %>/edit">Edit</a>
+    <h1><%= @location.name %></h1>
+    <div><%= @location.address %></div><br>
+    <div><%= @location.description %></div><br>
+    <div>Subject: <%= @location.subject %> | Accessibility: <%= @location.accessibility %></div>
   </div>
 
   <ul>
@@ -97,20 +107,10 @@
     <% end %>
   </div>
 
-  <div>
-    <!-- This is an empty div that will jQuery in the new form DOM element -->
-  </div>
+  <br>
 
-  <div>
-    <a href="/trips/new">Create New</a>
-    <!-- This is where the create a trip form will go -->
-
-
-  </div>
+  <div><a href="/trips/new">Create New</a></div>
 
   <br>
 
 <% end %>
-<div>
-  <%= link_to 'Sign Out', signout_path %>
-</div>
