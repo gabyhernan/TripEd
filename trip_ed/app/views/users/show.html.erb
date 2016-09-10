@@ -1,3 +1,11 @@
+<style>
+ #map {
+        width: 300px;
+        height: 200px;
+     }
+    </style>
+
+
 <h1>Welcome, <%=@user.name%>!</h1>
 
 
@@ -7,9 +15,17 @@
   <h3>Your upcoming trips</h3>
   <ul>
     <% @trips.each do |trip| %>
-      <li><%=trip.location.name%>: <%= trip.date%>, at <%= trip.start_time%>.</li>
+    <li><%=trip.location.name%>: <%= trip.date%>, at <%= trip.start_time%>.</li>
+      <button id="transit" type="button" data=<%= trip.id %>>Subway</button>
+      <button id="walking" type="button" data=<%= trip.id %>>Walking</button>
+      <button id="driving" type="button" data=<%= trip.id %>>Driving</button>
+      <br>
+      <iframe id="mapscreen" data=<%= trip.id %> width="300" height="300" frameborder="2" style="border:2" src="https://www.google.com/maps/embed/v1/directions?origin=10+east+21+street+newyork+ny&destination=2900+Southern+Blvd&mode=walking&key=AIzaSyB2C2zMcCaZjfyvQFG7kSVtRmdJhVDqNGY" allowfullscreen></iframe>
+      <hr>
     <% end %>
   </ul>
+
 <% end %>
 
 <%= link_to 'Back', locations_path %>
+
