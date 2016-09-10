@@ -1,11 +1,13 @@
 <% if session[:type] == "user" %>
+
   <div class="nav-bar">
-    <div class="logo">tripED</div>
+    <div class="logo card-panel teal lighten-2">tripED</div>
     <ul class="nav-menu">
       <li><a href="/users/<%= @session %>">Profile</a></li>
       <li><%= link_to 'Sign Out', signout_path %></li>
     </ul>
   </div>
+
 
   <h1>School house not rockin'? Book a field trip.</h1>
 
@@ -15,16 +17,19 @@
   <% end %>
 
   <% if @locations.present? %>
-      <ul>
+      <ul class=''>
           <% @locations.each do |location|%>
-          <li><a href="/locations/<%=location.id%>"><%=location.name%></li>
+          <li class='card-panel blue-grey lighten-5'>  <a href="/locations/<%=location.id%>"><%=location.name%> </li>
           <% end %>
       </ul>
   <% else %>
     <p>There are no locations matching this criteria: <%= params[:search] %>.</p>
   <% end %>
+</div>
+
 
 <% elsif session[:type] == "location"%>
+<div class="container">
   <div class="nav-bar">
     <div class="logo">tripED</div>
     <ul class="nav-menu">
@@ -64,3 +69,4 @@
   <br>
 
 <% end %>
+</div>
