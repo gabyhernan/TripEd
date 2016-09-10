@@ -1,9 +1,13 @@
-<%= link_to 'Sign Out', signout_path %>
 <% if session[:type] == "user" %>
+  <div class="nav-bar">
+    <div class="logo">tripED</div>
+    <ul class="nav-menu">
+      <li><a href="/users/<%= @session %>">Profile</a></li>
+      <li><%= link_to 'Sign Out', signout_path %></li>
+    </ul>
+  </div>
 
-  <a href="/users/<%= @session %>">Profile</a>
-
-  <h3> Search for field trip by name, address, description, subject, or accessibility</h3>
+  <h1>School house not rockin'? Book a field trip.</h1>
 
   <%= form_tag(locations_path, :method => "get", id: "search-form") do %>
     <%= text_field_tag :search, params[:search], placeholder: "Search Locations" %>
@@ -22,7 +26,11 @@
 
 <% elsif session[:type] == "location"%>
   <div class="nav-bar">
-    <a href="/locations/<%= @location.id %>/edit">Edit</a>
+    <div class="logo">tripED</div>
+    <ul class="nav-menu">
+      <li><a href="/locations/<%= @location.id %>/edit">Edit</a></li>
+      <li><%= link_to 'Sign Out', signout_path %></li>
+    </ul>
   </div>
 
   <div class="location-container">
