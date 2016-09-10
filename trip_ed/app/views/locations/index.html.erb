@@ -1,10 +1,13 @@
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
 <% if session[:type] == "user" %>
 
   <div class="nav-bar">
     <div class="logo card-panel teal lighten-2">tripED</div>
     <ul class="nav-menu">
-      <li><a href="/users/<%= @session %>">Profile</a></li>
-      <li><%= link_to 'Sign Out', signout_path %></li>
+      <li class=''><a href="/users/<%= @session %>">Profile</a></li>
+      <li class=''><%= link_to 'Sign Out', signout_path %></li>
     </ul>
   </div>
 
@@ -12,10 +15,16 @@
   <h1>School house not rockin'? Book a field trip.</h1>
 
   <!--this is a search bar-->
+
+
+
   <%= form_tag(locations_path, :method => "get", id: "search-form") do %>
     <%= text_field_tag :search, params[:search], placeholder: "Search Locations" %>
-    <%= submit_tag "Search", class: "waves-effect waves-light btn"%>
+    <%= button_tag(type: "Search", class: "waves-effect waves-light btn") do %>
+      Search <i class="material-icons">search</i>
+   <% end %>
   <% end %>
+
 
   <!--if there are search locations that match query, display below -->
   <% if @locations.present? %>
