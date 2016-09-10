@@ -25,47 +25,50 @@
   <% else %>
     <p>There are no locations matching this criteria: <%= params[:search] %>.</p>
   <% end %>
+    <!--map goes here -->
+   <div id="map"></div>
+   <!--script that powers the map-->
+   <script>
+      var map;
+      function initMap() {
+        var myLatLng = {lat: <%=@mylat%>, lng: <%=@mylng%>}
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          disableDefaultUI: true,
+          center: myLatLng,
+          zoom: 12
+        });
+
+        var infowindow = new google.maps.InfoWindow({
+          content: "<%=session[:school_address]%>"
+        });
 
 
-  <!--map goes here -->
- <div id="map"></div>
- <!--script that powers the map-->
- <script>
-    var map;
-    function initMap() {
-      var myLatLng = {lat: <%=@lat%>, lng: <%=@lng%>}
+        var myMarker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          animation: google.maps.Animation.DROP
+        });
+        myMarker.addListener('click', function() {
+          infowindow.open(map, myMarker);
+        });
 
-      var map = new google.maps.Map(document.getElementById('map'), {
-        disableDefaultUI: true,
-        center: myLatLng,
-        zoom: 12
-      });
+        var markers = [
+          <% @location_coords.each do |location|%>
+          [<%=location["lat"]%>,<%=location["lng"]%>],
+          <% end %>
+        ];
 
-      var infowindow = new google.maps.InfoWindow({
-        content: "<%=session[:school_address]%>"
-      });
-
-
-      var myMarker = new google.maps.Marker({
-        position: myLatLng,
-        map: map,
-        animation: google.maps.Animation.DROP,
-      });
-      myMarker.addListener('click', function() {
-        infowindow.open(map, myMarker);
-      });
-
-      var markers = [
-
-      ]
-
-      for (var i = 0; i < markers.length; i++){
-        console.log(markers[i])
+        for (var i = 0; i < markers.length; i++){
+          var newMarker = new google.maps.Marker({
+            position: {lat: markers[i][0], lng: markers[i][1]},
+            map: map,
+            animation: google.maps.Animation.DROP
+        });
       }
-
     }
-  </script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgn3marDLka0pTrAKp5JRPSidCqdNiqVA&callback=initMap"></script>
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgn3marDLka0pTrAKp5JRPSidCqdNiqVA&callback=initMap"></script>
 
 <% elsif session[:type] == "location"%>
   <div class="nav-bar">
@@ -83,13 +86,6 @@
     <div><%= @location.description %></div><br>
     <div>Subject: <%= @location.subject %> | Accessibility: <%= @location.accessibility %></div>
   </div>
-
-  <ul>
-    <% @location_coords.each do |location|%>
-    <li>location["lat"],location["lng"]</li>
-    <% end %>
-  </ul>
-
 
   <div class="trips-container">
     <% if @trips.length == 0 %>

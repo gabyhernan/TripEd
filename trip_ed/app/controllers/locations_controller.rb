@@ -12,11 +12,13 @@ class LocationsController < ApplicationController
       @trips = Trip.where(location_id: @location.id)
     elsif session[:type] == 'user'
       @session = session[:user_id]
-      directions
-      @lat = @coordinates["lat"]
-      @lng = @coordinates["lng"]
+      my_location
+      @mylat = @coordinates["lat"]
+      @mylng = @coordinates["lng"]
       if params[:search]
         @locations = Location.search(params[:search]).order("created_at DESC")
+        get_locations_coords(@locations)
+        @location_coords
       else
         @locations = Location.all.order('created_at DESC')
         get_locations_coords(@locations)
@@ -35,7 +37,7 @@ class LocationsController < ApplicationController
     @session = session[:user_id]
   end
 
-  def directions
+  def my_location
     address = session[:school_address]
     key = ENV["GOOGLE_KEY"]
     url = ("https://maps.googleapis.com/maps/api/geocode/json?address="+address+",+key="+key)
@@ -54,6 +56,8 @@ class LocationsController < ApplicationController
       json = JSON.parse(response.body)
       @location_coords.push(json["results"][0]["geometry"]["location"])
     end
+    @location_coords
+    debugger
   end
 
   # GET /locations/new
