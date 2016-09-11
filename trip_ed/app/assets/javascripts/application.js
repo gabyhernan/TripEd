@@ -25,18 +25,20 @@ $(document).ready(function () {
 
   $('button').on('click', function(el){
     var tempVal = $(this).attr('id');
-    var tempNumber = $(this).attr('data-id');
+    var tempNumber = $(this).attr('data');
     tempNumber = parseInt(tempNumber)
-    console.log(tempVal);
-    console.log(tempNumber);
+    console.log(tempVal,'this is tempVal');
+    console.log(tempNumber, 'this is tempNumber');
+
 
     // @user_address = school_address
-    var newurl = "https://www.google.com/maps/embed/v1/directions?origin=10+E+21st+St&destination=2538+eagle+run+dr&mode="+tempVal+"&key=AIzaSyB2C2zMcCaZjfyvQFG7kSVtRmdJhVDqNGY";
+    var newurl = "https://www.google.com/maps/embed/v1/directions?origin=10+E+21st+St&destination=2900+Southern+Blvd&mode="+tempVal+"&key=AIzaSyB2C2zMcCaZjfyvQFG7kSVtRmdJhVDqNGY";
 
-    var $tempmap = $('#mapscreen[data-id='+tempNumber+']');
-    console.log($tempmap)
-    $tempmap.attr('src', newurl);
-    $('#mapscreen').attr('src', newurl)
+    // var $tempmap = $('#mapscreen[data-id='+tempNumber+']');
+    // console.log($tempmap,'this is tempmqp')
+    // $tempmap.attr('src', newurl);
+    console.log($('iframe'))
+    $('iframe').attr('src', newurl)
 
 
     // $('#mapscreen').attr('src', newurl);
