@@ -22,25 +22,26 @@
 
 $(document).ready(function () {
   console.log("script loaded")
+  var tempAddress = document.querySelector("div.current-address");
+  tempAddress = tempAddress.getAttribute("address");
+  console.log('this should be the current address of our session: ', tempAddress);
 
   $('button').on('click', function(el){
     var tempVal = $(this).attr('id');
     var tempNumber = $(this).attr('data');
+    var locationAddress = $(this).attr('address');
+
+
     tempNumber = parseInt(tempNumber)
-    console.log(tempVal,'this is tempVal');
-    console.log(tempNumber, 'this is tempNumber');
+    // console.log(tempVal,'this is tempVal');
+    // console.log(tempNumber, 'this is tempNumber');
+    // console.log(tempDestination, 'this is destination address');
 
+    var newurl = "https://www.google.com/maps/embed/v1/directions?origin=" + tempAddress + "&destination=" + locationAddress + "&mode="+tempVal+"&key=AIzaSyB2C2zMcCaZjfyvQFG7kSVtRmdJhVDqNGY";
 
-    // @user_address = school_address
-    var newurl = "https://www.google.com/maps/embed/v1/directions?origin=10+E+21st+St&destination=2900+Southern+Blvd&mode="+tempVal+"&key=AIzaSyB2C2zMcCaZjfyvQFG7kSVtRmdJhVDqNGY";
-
-    // var $tempmap = $('#mapscreen[data-id='+tempNumber+']');
-    // console.log($tempmap,'this is tempmqp')
-    // $tempmap.attr('src', newurl);
-    console.log($('iframe'))
     var kenzo = 'mapscreen' + tempNumber
     console.log(kenzo,'this is kenzo')
-    // $('iframe[id='+kenzo+']').attr('src', newurl) //select element via its attribute
+
     $('#'+kenzo).attr('src', newurl) //select element via id name
 
 
