@@ -12,6 +12,7 @@ class LocationsController < ApplicationController
       @trips = Trip.where(location_id: @location.id)
       @session = session[:user_id]
     elsif session[:type] == 'user'
+      @key = ENV["GOOGLE_KEY"]
       @session = session[:user_id]
       my_location
       @mylat = @coordinates["lat"]
