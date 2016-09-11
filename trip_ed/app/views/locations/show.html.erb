@@ -1,13 +1,6 @@
-<div class="nav-bar">
-  <div class="logo">tripED</div>
-  <ul class="nav-menu">
-    <li><a href="/users/<%= @session %>">Profile</a></li>
-    <li><%= link_to 'Sign Out', signout_path %></li>
-  </ul>
-</div>
 
 <div class="location-information">
-  <div><img src="<%= @location.image_url %>"></div>
+  <div class="location-image"><img src="<%= @location.image_url %>"></div>
   <h1><%= @location.name %></h1>
   <div class="address"><%= @location.address %></div><br>
   <div class="description"><%= @location.description %></div><br>
