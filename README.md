@@ -52,6 +52,7 @@ The following Ruby gems were used for this web application:
 * jquery-turbolinks
 * redis-rails
 * redis-namespace
+* twilio-ruby
 
 ---
 
@@ -127,4 +128,5 @@ Location Account:
 * [Rails Guide](http://guides.rubyonrails.org/)
 * [Redis](https://github.com/redis-store/redis-rails)
 * [Ruby bcrypt](https://github.com/codahale/bcrypt-ruby)
+* [Twilio Ruby](https://github.com/twilio/twilio-ruby)
 
