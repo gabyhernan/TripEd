@@ -8,6 +8,10 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = User.find(params[:id])
+    @trips = Trip.where(user_id: @user.id)
+    @session = session[:address]
+
     if session[:type] == nil
       redirect_to '/'
     else
@@ -15,6 +19,7 @@ class UsersController < ApplicationController
       @trips = Trip.where(user_id: @user.id)
       @session = session[:address]
     end
+
   end
 
   # GET /users/new

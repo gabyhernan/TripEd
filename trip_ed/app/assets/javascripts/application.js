@@ -15,8 +15,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-//= require materialize-sprockets
-//= require materialize/extras/nouislider
+
+
+// $(document).ready(function () {
+//     $("#trip_1").prop('Transit', true);
+// });
 
 $(document).ready(function () {
   console.log("script loaded")
@@ -36,14 +39,17 @@ $(document).ready(function () {
     // console.log(tempNumber, 'this is tempNumber');
     // console.log(tempDestination, 'this is destination address');
 
-    var newurl = "https://www.google.com/maps/embed/v1/directions?origin=" + tempAddress + "&destination=" + locationAddress + "&mode="+tempVal+"&key="+ENV["GOOGLE_KEY"];
+    var newurl = "https://www.google.com/maps/embed/v1/directions?origin=" + tempAddress + "&destination=" + locationAddress + "&mode="+tempVal+"&key=AIzaSyB2C2zMcCaZjfyvQFG7kSVtRmdJhVDqNGY";
 
     var kenzo = 'mapscreen' + tempNumber
     console.log(kenzo,'this is kenzo')
 
     $('#'+kenzo).attr('src', newurl) //select element via id name
 
-
-    // $('#mapscreen').attr('src', newurl);
   });
+
 });
+
+
+//= require materialize-sprockets
+//= require materialize/extras/nouislider

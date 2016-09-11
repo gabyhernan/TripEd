@@ -1,5 +1,12 @@
-<h1>Welcome, <%=@user.name%>!</h1>
+<style>
+ #map {
+        width: 300px;
+        height: 200px;
+     }
+    </style>
 
+
+<h1>Welcome, <%=@user.name%>!</h1>
 
 <% if @trips.length == 0 %>
   <h3>You currently have no trips planned</h3>
@@ -21,5 +28,6 @@
   </ul>
 
 <% end %>
+
 
 <%= link_to 'Back', locations_path, class:"waves-effect waves- btn white-text" %>
