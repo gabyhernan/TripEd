@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     else
       @user = User.find(params[:id])
       @trips = Trip.where(user_id: @user.id)
+      @session = session[:address]
     end
   end
 

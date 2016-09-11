@@ -24,7 +24,12 @@
     <div class="container">
       <nav>
         <div class="nav-wrapper yellow darken-2">
-          <a href="/locations" class="brand-logo white-text">tripED</a>
+          <% if session[:type] == nil %>
+            <a href="/" class="brand-logo white-text">tripED</a>
+          <% else %>
+            <a href="/locations" class="brand-logo white-text">tripED</a>
+          <% end %>
+
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <% if session[:type] == "user" %>
               <li><a href="/users/<%= @session %>"><i class="material-icons white-text">settings</i></a></li>

@@ -1,6 +1,6 @@
 
 <div class="location-information">
-  <div class="location-image"><img src="<%= @location.image_url %>"></div>
+  <div class=""><img class="location-image" src="<%= @location.image_url %>"></div>
   <h1><%= @location.name %></h1>
   <div class="address"><%= @location.address %></div><br>
   <div class="description"><%= @location.description %></div><br>
@@ -18,7 +18,7 @@
         <%= hidden_field_tag "location", @location.id %>
         <%= hidden_field_tag "trip", trip.id %>
         <%= hidden_field_tag "user", session[:user_id] %>
-        <%= submit_tag "Reserve" %>
+        <%= submit_tag "Reserve", class:"waves-effect waves- btn white-text" %>
         Date: <%= trip.date %> | Start Time: <%= trip.start_time %>
       <% end %>
       <br>
@@ -27,4 +27,4 @@
   <% end %>
 <% end %>
 
-<div><%= link_to 'Back', locations_path %></div>
+<div><%= link_to 'Back', locations_path , class:"waves-effect waves- btn white-text" %></div>
