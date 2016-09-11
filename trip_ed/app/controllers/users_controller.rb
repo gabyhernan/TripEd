@@ -27,7 +27,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.password = params[:password_hash]
     @user.save!
-    redirect_to '/'
+    UserMailer.welcome_user(@user).deliver
+    redirect_to '/locations'
   end
 
   # PATCH/PUT /users/1
