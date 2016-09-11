@@ -1,14 +1,5 @@
 <% if session[:type] == "user" %>
 
-  <div class="nav-bar">
-    <div class="logo card-panel teal lighten-2">tripED</div>
-    <ul class="nav-menu">
-      <li><a href="/users/<%= @session %>">Profile</a></li>
-      <li><%= link_to 'Sign Out', signout_path %></li>
-    </ul>
-  </div>
-
-
   <h1>School house not rockin'? Book a field trip.</h1>
 
   <!--this is a search bar-->
@@ -30,73 +21,9 @@
       <p>There are no locations matching this criteria: <%= params[:search] %>.</p>
     <% end %>
   </div>
-  <div class="col s5 pull-s7">
-     <div id="map"></div>
-      <script>
-      var map;
-      function initMap() {
-        var myLatLng = {lat: <%=@mylat%>, lng: <%=@mylng%>}
-
-        var map = new google.maps.Map(document.getElementById('map'), {
-          disableDefaultUI: true,
-          center: myLatLng,
-          zoom: 10
-        });
-
-        var bounds = new google.maps.LatLngBounds();
-
-        var infowindow = new google.maps.InfoWindow({
-          content: "<%=session[:school_address]%>"
-        });
-
-        var myMarker = new google.maps.Marker({
-          position: myLatLng,
-          map: map,
-          animation: google.maps.Animation.DROP
-        });
-
-        myMarker.addListener('click', function() {
-          infowindow.open(map, myMarker);
-        });
-
-        var markers = [
-          <% @location_coords.each do |location|%>
-          ["<%=location[0]%>",<%=location[1]["lat"]%>,<%=location[1]["lng"]%>],
-          <% end %>
-        ];
-
-        var newinfowindow = new google.maps.InfoWindow({
-          content: "holding..."
-        });
-
-        for (var i = 0; i < markers.length; i++){
-
-          var newMarker = new google.maps.Marker({
-            position: {lat: markers[i][1], lng: markers[i][2]},
-            map: map,
-            title:markers[i][0],
-            animation: google.maps.Animation.DROP
-          });
-
-          google.maps.event.addListener(newMarker, 'click', function(){
-            newinfowindow.setContent(this.title);
-            newinfowindow.open(map, this);
-          })
-      }
-    }
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgn3marDLka0pTrAKp5JRPSidCqdNiqVA&callback=initMap"></script>
-  </div>
 </div>
+
 <% elsif session[:type] == "location"%>
-<div class="container">
-  <div class="nav-bar">
-    <div class="logo">tripED</div>
-    <ul class="nav-menu">
-      <li><a href="/locations/<%= @location.id %>/edit">Edit</a></li>
-      <li><%= link_to 'Sign Out', signout_path %></li>
-    </ul>
-  </div>
 
   <div class="location-container">
     <div><img src="<%= @location.image_url %>"></div>
