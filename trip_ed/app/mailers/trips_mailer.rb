@@ -7,4 +7,5 @@ class TripsMailer < ApplicationMailer
     @trip = trip
     mail(to: @email, subject: 'Your Upcoming Trip!')
   end
+
 end

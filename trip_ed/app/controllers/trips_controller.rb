@@ -1,3 +1,5 @@
+require 'twilio-ruby'
+
 class TripsController < ApplicationController
   # before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
@@ -69,6 +71,7 @@ class TripsController < ApplicationController
       @trip.update(user_id: params[:user])
       @email = session[:email]
       TripsMailer.new_trip(@location, @trip, @email).deliver
+      text_conf(@location, @trip)
       redirect_to location_path(@location)
     elsif session[:type] == 'location'
       @trip = Trip.find(params[:id])
@@ -101,4 +104,17 @@ class TripsController < ApplicationController
     def trip_params
       params.require(:trip).permit(:user_id, :location_id, :date, :start_time, :reserved)
     end
+
+    def text_conf(location, trip)
+        @trip = trip
+        @location = location
+        account_sid = ENV["TWILIO_ACCOUNT_SID"]
+        auth_token = ENV['TWILIO_AUTH_TOKEN']
+        @client = Twilio::REST::Client.new account_sid, auth_token
+        @message = @client.messages.create(
+          to: "+15853092274" || session[:phone],
+          from: "+15856435230",
+          body: "Your field trip to #{@location.name} on #{@trip.date} at #{@trip.start_time} is confirmed!")
+    end
+
 end
