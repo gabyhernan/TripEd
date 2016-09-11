@@ -10,6 +10,7 @@ class LocationsController < ApplicationController
     if session[:type] == 'location'
       @location = Location.find_by(id: session[:user_id])
       @trips = Trip.where(location_id: @location.id)
+      @session = session[:user_id]
     elsif session[:type] == 'user'
       @session = session[:user_id]
       my_location

@@ -32,7 +32,7 @@ Location.create([
   { name: 'The Bronx Zoo', email: Faker::Internet.email, password_hash: Faker::Internet.password, address: '2300 Southern Boulevard, Bronx, NY', description: Faker::Lorem.paragraph(5), subject: 'Science', accessibility: 'Wheelchair', image_url: 'http://static.spplus.com/pictures/bronx-zoo-v3.jpg' },
   { name: 'Museum of Mathematics', email: Faker::Internet.email, password_hash: Faker::Internet.password, address: '11 East 26th Street, New York, NY', description: Faker::Lorem.paragraph(5), subject: 'Math', accessibility: 'Wheelchair', image_url: 'https://static01.nyt.com/images/2011/06/06/crosswords/NPmomath/NPmomath-blog480.jpg' },
   { name: 'Childrens Museum of Manhattan', email: Faker::Internet.email, password_hash: Faker::Internet.password, address: '212 West 83rd Street, New York, NY', description: Faker::Lorem.paragraph(5), subject: 'Science', accessibility: 'Wheelchair', image_url: 'https://dsgnmomonline.files.wordpress.com/2011/06/cmom06.jpg' },
-  { name: 'Intrepid Sea, Air, and Space Museum', email: Faker::Internet.email, password_hash: Faker::Internet.password, address: 'Pier 86, West 46th Street & 12th Avenue, New York, NY', description: Faker::Lorem.paragraph(5), subject: 'History', accessibility: 'Wheelchair', image_url: 'http://www.passcomparison.com/wp-content/uploads/2015/02/intrepid_800400.jpg' }
+  { name: 'Intrepid Sea, Air, and Space Museum', email: Faker::Internet.email, password_hash: Faker::Internet.password, address: '580 12th Ave, New York, NY', description: Faker::Lorem.paragraph(5), subject: 'History', accessibility: 'Wheelchair', image_url: 'http://www.passcomparison.com/wp-content/uploads/2015/02/intrepid_800400.jpg' }
 ])
 
 Trip.create([

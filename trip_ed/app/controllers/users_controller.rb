@@ -10,6 +10,15 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @trips = Trip.where(user_id: @user.id)
+    @session = session[:address]
+
+    if session[:type] == nil
+      redirect_to '/'
+    else
+      @user = User.find(params[:id])
+      @trips = Trip.where(user_id: @user.id)
+    end
+
   end
 
   # GET /users/new
@@ -27,7 +36,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.password = params[:password_hash]
     @user.save!
-    redirect_to '/'
+    UserMailer.welcome_user(@user).deliver
+    redirect_to '/locations'
   end
 
   # PATCH/PUT /users/1

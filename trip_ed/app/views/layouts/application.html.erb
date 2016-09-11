@@ -6,6 +6,8 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <style type="text/css">
     html, body {
       height: 100%; margin: 0; padding: 0;
@@ -15,11 +17,29 @@
       width: 300px;
     }
     </style>
+
   </head>
 
   <body>
     <div class="container">
+      <nav>
+        <div class="nav-wrapper yellow darken-2">
+          <a href="/locations" class="brand-logo white-text">tripED</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <% if session[:type] == "user" %>
+              <li><a href="/users/<%= @session %>"><i class="material-icons white-text">settings</i></a></li>
+              <li><a href="/signout"><i class="material-icons white-text">power_settings_new</i></a></li>
+            <% elsif session[:type] == "location" %>
+              <li><a href="/locations/<%= @session %>/edit"><i class="material-icons white-text">settings</i></a></li>
+              <li><a href="/signout"><i class="material-icons white-text">power_settings_new</i></a></li>
+            <% else %>
+              <li><a href="/users/new"><i class="material-icons white-text">perm_identity</i></a></li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
       <%= yield %>
-    </div> 
+    </div>
   </body>
 </html>
+

@@ -1,12 +1,12 @@
-<div class="nav-bar">
-  <div class="logo">tripED</div>
-  <ul class="nav-menu">
-    <li><%= link_to 'Sign Out', signout_path %></li>
-  </ul>
-</div>
+<style>
+ #map {
+        width: 300px;
+        height: 200px;
+     }
+    </style>
+
 
 <h1>Welcome, <%=@user.name%>!</h1>
-
 
 <% if @trips.length == 0 %>
   <h3>You currently have no trips planned</h3>
@@ -14,9 +14,20 @@
   <h3>Your upcoming trips</h3>
   <ul>
     <% @trips.each do |trip| %>
-      <li><%=trip.location.name%>: <%= trip.date%>, at <%= trip.start_time%>.</li>
+  <div class = <%= "info-map" %> id=<%= trip.id %>>
+    <li><%=trip.location.name%>: <%= trip.date%>, at <%= trip.start_time%>.</li>
+    <li><%=trip.location.address%>. <b>User address :</b> <%=@session%> </li>
+      <button id="transit" type="button" data=<%= trip.id %> origin=<%= @session.to_url %> destination=<%= trip.location.address.to_url %>>Subway</button>
+      <button id="walking" type="button" data=<%= trip.id %> origin=<%= @session.to_url %> destination=<%= trip.location.address.to_url %>>Walking</button>
+      <button id="driving" type="button" data=<%= trip.id %> origin=<%= @session.to_url %> destination=<%= trip.location.address.to_url %>>Driving</button>
+      <br>
+      <iframe id="mapscreen<%=trip.id%>" id=<%= trip.id %> width="300" height="300" frameborder="2" style="border:2" src="https://www.google.com/maps/embed/v1/directions?origin=<%=@session%>&destination=<%=trip.location.address%>&mode=driving&key=AIzaSyB2C2zMcCaZjfyvQFG7kSVtRmdJhVDqNGY" allowfullscreen></iframe>
+  </div>
+      <hr>
     <% end %>
   </ul>
+
 <% end %>
 
 <%= link_to 'Back', locations_path %>
+
