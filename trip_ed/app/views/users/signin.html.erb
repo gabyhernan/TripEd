@@ -1,6 +1,6 @@
 <h1> Welcome to Trip Ed </h1>
 
-<h1>Member Sign In</h1>
+
 
 <div class="sign-in">
   <%= form_tag '/users/signin', method: 'post' do %>
@@ -9,7 +9,7 @@
     <%= text_field_tag :email, params[:email] %><br><br>
     <%= label_tag :password, 'password' %>
     <%= password_field_tag :password, params[:password_hash] %><br><br>
-    <%= submit_tag "Login"%>
+    <%= submit_tag "Login", class:"waves-effect waves- btn" %>
   <%end%>
 </div>
 

@@ -88,7 +88,7 @@
 <% elsif session[:type] == "location"%>
 
   <div class="location-container">
-    <div><img src="<%= @location.image_url %>"></div>
+    <div><img class="location-image" src="<%= @location.image_url %>"></div>
     <h1><%= @location.name %></h1>
     <div><%= @location.address %></div><br>
     <div><%= @location.description %></div><br>
@@ -101,19 +101,20 @@
     <% else %>
       <h4>Upcoming Trips</h4>
       <% @trips.each do |trip| %>
-        <div>
+        <br><div>
           Date: <%= trip.date %> |
-          Time: <%= trip.start_time %> |
-          <a href="/trips/<%=trip.id%>/edit">Edit</a> |
-          <%= link_to 'Destroy', trip, method: :delete %>
+          Time: <%= trip.start_time %> | <br>
+          <a class="waves-effect waves- btn white-text" href="/trips/<%=trip.id%>/edit">Edit</a>
+          <%= link_to 'Delete', trip, method: :delete, class:"waves-effect waves- btn white-text" %>
         </div>
       <% end %>
     <% end %>
   </div>
 
   <br>
+  <br>
 
-  <div><a href="/trips/new">Create New</a></div>
+  <div><a class="waves-effect waves- btn white-text" href="/trips/new">Create New Trip</a></div>
 
   <br>
 

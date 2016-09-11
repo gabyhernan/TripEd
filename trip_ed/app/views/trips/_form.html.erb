@@ -1,14 +1,5 @@
 <%= form_for @trip do |f| %>
 
-  <div class="field">
-    <%= f.label :user_id %>
-    <%= f.text_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :location_id %>
-    <%= f.text_field :location_id %>
-  </div>
 
   <div class="field">
     <%= f.label :date %>
@@ -26,7 +17,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= submit_tag "Submit", class:"waves-effect waves- btn" %>
   </div>
 
 
