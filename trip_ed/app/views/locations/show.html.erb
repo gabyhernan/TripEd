@@ -1,9 +1,6 @@
-<div class="nav-bar">
-  <a href="/users/<%= @session %>">Profile</a>
-</div>
 
 <div class="location-information">
-  <div><img src="<%= @location.image_url %>"></div>
+  <div class="location-image"><img src="<%= @location.image_url %>"></div>
   <h1><%= @location.name %></h1>
   <div class="address"><%= @location.address %></div><br>
   <div class="description"><%= @location.description %></div><br>
@@ -17,7 +14,6 @@
     <!-- <p>Sorry! all trips for this location have been reserved!</p> -->
   <% else %>
     <div>
-
       <%= form_tag( "/trips/reserve", method: "put" ) do %>
         <%= hidden_field_tag "location", @location.id %>
         <%= hidden_field_tag "trip", trip.id %>
@@ -31,4 +27,4 @@
   <% end %>
 <% end %>
 
-<%= link_to 'Back', locations_path %>
+<div><%= link_to 'Back', locations_path %></div>
