@@ -23,11 +23,11 @@
   <body>
     <div class="container">
       <nav>
-        <div class="nav-wrapper yellow darken-2">
+        <div class="nav-wrapper yellow darken-3">
           <% if session[:type] == nil %>
-            <a href="/" class="brand-logo white-text">tripED</a>
+            <a href="/"><%= image_tag "TripEd-Logo-Horizontal.png", class:"brand-logo"%></a>
           <% else %>
-            <a href="/locations" class="brand-logo white-text">tripED</a>
+            <a href="/locations"><%= image_tag "TripEd-Logo-Horizontal.png", class:"brand-logo" %></a>
           <% end %>
 
           <ul id="nav-mobile" class="right hide-on-med-and-down">
