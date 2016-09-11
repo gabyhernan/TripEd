@@ -38,7 +38,10 @@ $(document).ready(function () {
     // console.log($tempmap,'this is tempmqp')
     // $tempmap.attr('src', newurl);
     console.log($('iframe'))
-    $('iframe').attr('src', newurl)
+    var kenzo = 'mapscreen' + tempNumber
+    console.log(kenzo,'this is kenzo')
+    // $('iframe[id='+kenzo+']').attr('src', newurl) //select element via its attribute
+    $('#'+kenzo).attr('src', newurl) //select element via id name
 
 
     // $('#mapscreen').attr('src', newurl);
