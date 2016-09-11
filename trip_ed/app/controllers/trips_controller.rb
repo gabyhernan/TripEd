@@ -67,6 +67,8 @@ class TripsController < ApplicationController
       # debugger
       @trip.toggle!(:reserved)
       @trip.update(user_id: params[:user])
+      @email = session[:email]
+      TripsMailer.new_trip(@location, @trip, @email).deliver
       redirect_to location_path(@location)
     elsif session[:type] == 'location'
       @trip = Trip.find(params[:id])
