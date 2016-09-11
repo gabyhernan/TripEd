@@ -22,14 +22,15 @@
 
 $(document).ready(function () {
   console.log("script loaded")
-  var tempAddress = document.querySelector("div.current-address");
-  tempAddress = tempAddress.getAttribute("address");
-  console.log('this should be the current address of our session: ', tempAddress);
+  // var tempAddress = document.querySelector("div.current-address");
+  // tempAddress = tempAddress.getAttribute("address");
+  // console.log('this should be the current address of our session: ', tempAddress);
 
   $('button').on('click', function(el){
     var tempVal = $(this).attr('id');
     var tempNumber = $(this).attr('data');
-    var locationAddress = $(this).attr('address');
+    var tempAddress = $(this).attr('origin');
+    var locationAddress = $(this).attr('destination');
 
 
     tempNumber = parseInt(tempNumber)

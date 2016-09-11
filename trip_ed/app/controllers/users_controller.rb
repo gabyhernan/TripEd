@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @trips = Trip.where(user_id: @user.id)
-    @session = session[:address].to_url
+    @session = session[:address]
   end
 
   # GET /users/new
