@@ -10,46 +10,42 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-// = require jquery
+//= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require materialize-sprockets
+//= require materialize/extras/nouislider
 
 
-// $(document).ready(function () {
-//     $("#trip_1").prop('Transit', true);
-// });
-
-$(document).ready(function () {
+$(document).ready(function() {
   console.log("script loaded")
-  // var tempAddress = document.querySelector("div.current-address");
-  // tempAddress = tempAddress.getAttribute("address");
-  // console.log('this should be the current address of our session: ', tempAddress);
 
   $('button').on('click', function(el){
+    // console.log('did you push my button?');
+
     var tempVal = $(this).attr('id');
+    // console.log('id: ', tempVal);
+
     var tempNumber = $(this).attr('data');
+    tempNumber = parseInt(tempNumber);
+    // console.log('data: ', tempNumber);
+
     var tempAddress = $(this).attr('origin');
+    // console.log('origin addy: ', tempAddress);
+
     var locationAddress = $(this).attr('destination');
+    // console.log('dest addy: ', locationAddress);
 
+    var newurl = "https://www.google.com/maps/embed/v1/directions?origin=" + tempAddress + "&destination=" + locationAddress + "&mode="+tempVal+"&key="+ENV["GOOGLE_KEY"];
 
-    tempNumber = parseInt(tempNumber)
-    // console.log(tempVal,'this is tempVal');
-    // console.log(tempNumber, 'this is tempNumber');
-    // console.log(tempDestination, 'this is destination address');
+    var kenzo = 'mapscreen' + tempNumber;
 
-    var newurl = "https://www.google.com/maps/embed/v1/directions?origin=" + tempAddress + "&destination=" + locationAddress + "&mode="+tempVal+"&key=AIzaSyB2C2zMcCaZjfyvQFG7kSVtRmdJhVDqNGY";
-
-    var kenzo = 'mapscreen' + tempNumber
-    console.log(kenzo,'this is kenzo')
-
-    $('#'+kenzo).attr('src', newurl) //select element via id name
+    $('#'+kenzo).attr('src', newurl); //select element via id name
 
   });
 
 });
 
 
-//= require materialize-sprockets
-//= require materialize/extras/nouislider
